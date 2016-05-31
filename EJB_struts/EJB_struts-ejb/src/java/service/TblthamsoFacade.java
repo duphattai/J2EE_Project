@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Tai
  */
-@Stateless
+@Stateless(mappedName = "TblthamsoFacade")
 public class TblthamsoFacade extends AbstractFacade<Tblthamso> implements TblthamsoFacadeLocal {
 
     @PersistenceContext(unitName = "EJB_struts-ejbPU")
