@@ -5,10 +5,14 @@
  */
 package service;
 
+import entity.Tblbenxe;
 import entity.Tbltuyenxe;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,7 +22,7 @@ import javax.persistence.PersistenceContext;
 public class TbltuyenxeFacade extends AbstractFacade<Tbltuyenxe> implements TbltuyenxeFacadeLocal {
 
     @PersistenceContext(unitName = "EJB_struts-ejbPU")
-    private EntityManager em;
+    private EntityManager em = Persistence.createEntityManagerFactory("EJB_struts-ejbPU").createEntityManager();
 
     @Override
     protected EntityManager getEntityManager() {
@@ -29,4 +33,34 @@ public class TbltuyenxeFacade extends AbstractFacade<Tbltuyenxe> implements Tblt
         super(Tbltuyenxe.class);
     }
     
+    public List<Tblbenxe> getAllBenXeDi(){
+        try{
+            String sql = "SELECT DISTINCT bx FROM Tblbenxe bx, Tbltuyenxe tx WHERE bx.mabenxe = tx.mabendi";
+            Query query = getEntityManager().createQuery(sql);
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    public List<Tblbenxe> getAllBenXeDen(){
+        try{
+            String sql = "SELECT DISTINCT bx FROM Tblbenxe bx, Tbltuyenxe tx WHERE bx.mabenxe = tx.mabenden";
+            Query query = getEntityManager().createQuery(sql);
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+    public Tbltuyenxe getTuyenXeForBenXeDiAndBenXeDen(int mabendi, int mabenden){
+        try{
+            String sql = "SELECT tx FROM Tbltuyenxe tx WHERE tx.mabendi = :mabendi AND tx.mabenden = :mabenden";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("mabendi", mabendi);
+            query.setParameter("mabenden", mabenden);
+            return (Tbltuyenxe)query.getSingleResult();
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }

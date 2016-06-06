@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
-    </context-param>
-    <!-- Sitemesh-->
-    <filter>
-        <filter-name>sitemesh</filter-name>
-        <filter-class>
-            com.opensymphony.module.sitemesh.filter.PageFilter
-        </filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>sitemesh</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
     <servlet>
         <servlet-name>action</servlet-name>
         <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
@@ -32,18 +17,21 @@
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+    <!-- Sitemesh-->
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>
+            com.opensymphony.module.sitemesh.filter.PageFilter
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- -->
     <servlet-mapping>
         <servlet-name>action</servlet-name>
         <url-pattern>*.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -53,7 +41,29 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    <ejb-local-ref>
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-nested.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+     <ejb-local-ref>
         <ejb-ref-name>TblbenxeFacade</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.TblbenxeFacadeLocal</local>

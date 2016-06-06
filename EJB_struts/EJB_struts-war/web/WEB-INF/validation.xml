@@ -24,21 +24,16 @@
     <formset>
 
         <!-- An example form -->
-        <form name="RegistrationForm">
+        <form name="logonForm">
             <field
-                property="userName"
+                property="username"
                 depends="required">
-                    <arg key="RegistrationForm.userName"/>
+                    <arg key="logonForm.username"/>
             </field>
             <field
-                property="fullName"
-                depends="required">
-                    <arg key="RegistrationForm.fullName"/>
-            </field>
-            <field
-                property="pass"
+                property="password"
                 depends="required,mask">
-                    <arg key="RegistrationForm.pass"/>
+                    <arg key="logonForm.password"/>
                     <var>
                         <var-name>mask</var-name>
                         <var-value>^[0-9a-zA-Z]*$</var-value>
@@ -47,5 +42,33 @@
         </form>
 
     </formset>
+
+    <!-- An example formset for another locale -->
+    <formset language="fr">
+
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^[0-9a-zA-Z]*$</constant-value>
+        </constant>
+
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+
+   </formset>
 
 </form-validation>

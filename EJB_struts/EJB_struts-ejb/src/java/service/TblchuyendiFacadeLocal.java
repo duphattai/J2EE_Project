@@ -6,6 +6,7 @@
 package service;
 
 import entity.Tblchuyendi;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface TblchuyendiFacadeLocal {
     List<Tblchuyendi> findRange(int[] range);
 
     int count();
+    
+    List<Object[]> traCuuChuyenDi(int mabendi, int mabenden, Date khoihanh);
     
 }

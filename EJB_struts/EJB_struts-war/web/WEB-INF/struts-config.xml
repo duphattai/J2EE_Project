@@ -7,8 +7,8 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="TraCuuChuyenDiForm" type="actionform.quanlyvexe.TraCuuChuyenDiForm"/>
         <form-bean name="BenXeForm" type="actionform.BenXe.BenXeForm"/>
-        
     </form-beans>
     
     <global-exceptions>
@@ -19,8 +19,13 @@
         <action input="/" name="BenXeForm" path="/thembenxe" scope="request" type="action.quanlybenxe.ThemBenXe" validate="false">
             <forward name="success" path="/pages/welcomeStruts.jsp"/>
         </action>
+        <action path="/vexe" type="action.quanlyvexe.index" name="TraCuuChuyenDiForm">
+            <forward name="success" path="/pages/vexe/index.jsp"/>
+        </action>
+        
+        <action path="/vexe/tracuu" input="/pages/vexe/index.jsp" name="TraCuuChuyenDiForm" type="action.quanlyvexe.TraCuuChuyenDi"/>
+        
         <action path="/index" forward="/pages/welcomeStruts.jsp"/>
-           
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

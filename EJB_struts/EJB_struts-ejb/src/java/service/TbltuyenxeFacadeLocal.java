@@ -5,6 +5,7 @@
  */
 package service;
 
+import entity.Tblbenxe;
 import entity.Tbltuyenxe;
 import java.util.List;
 import javax.ejb.Local;
@@ -27,7 +28,13 @@ public interface TbltuyenxeFacadeLocal {
     List<Tbltuyenxe> findAll();
 
     List<Tbltuyenxe> findRange(int[] range);
-
+    
+    public List<Tblbenxe> getAllBenXeDi();
+    
+    public List<Tblbenxe> getAllBenXeDen();
+    
+    Tbltuyenxe getTuyenXeForBenXeDiAndBenXeDen(int mabendi, int mabenden);
+    
     int count();
     
 }

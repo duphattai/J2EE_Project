@@ -129,4 +129,34 @@ INSERT INTO `quanlyxekhach`.`tblphanquyen`(`id`,`Quyen`)VALUES
                                                                 (2,"Nhân viên"),
                                                                 (3,"Quản lý");
 
+INSERT INTO `tblbenxe` VALUES 
+								(1,'Bến xe Miền Đông'),
+								(2,'Bến xe Miền Tây'),
+								(3,'Bến xe Chợ Lớn'),
+								(4,'Sóc Trăng'),
+								(5,'Cần Thơ'),
+								(6,'Cà Mau'),
+								(7,'Nha Trang'),
+								(8,'Long An'),
+								(9,'An Giang'),
+								(10,'Vũng Tàu'),
+								(11,'Huế');
 
+INSERT INTO `tbltuyenxe` VALUES 
+								(1,2,4,300),
+								(2,4,2,300),
+								(3,1,7,400),
+								(4,7,1,400),
+								(5,3,11,500);
+
+INSERT INTO `tblxekhach` VALUES 
+								(1,1,'Nguyễn Văn A','51B-006.64',1,46),
+								(2,1,'Nguyễn Văn B','83B-085.85',3,46),
+								(3,1,'Nguyễn Văn C','53B-085.85',2,46),
+								(4,1,'Nguyễn Văn D','73B-083.83',5,46);
+								
+								
+INSERT INTO `tblchuyendi` VALUES 
+								(1,1,'2016-06-06 18:00:00','2016-06-06 22:50:57',130000,46,0),
+								(2,2,'2016-06-07 07:00:57','2016-06-07 12:00:57',120000,26,20),
+								(3,3,'2016-06-07 12:00:57','2016-06-07 16:50:57',150000,16,30);

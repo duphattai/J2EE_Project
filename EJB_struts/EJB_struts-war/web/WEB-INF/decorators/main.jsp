@@ -6,7 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -22,15 +23,19 @@
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<c:url value="/resources/template/bootstrap/css/bootstrap.min.css"/>" >
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="<c:url value="/resources/template/plugins/Fonts/font-awesome-4.6.3/css/font-awesome.min.css"/>" >
     <!-- Theme style -->
     <link rel="stylesheet" href="<c:url value="/resources/template/dist/css/AdminLTE.min.css"/>" >
     
     <link rel="stylesheet" href="<c:url value="/resources/template/dist/css/skins/skin-blue.min.css"/>" >
     <!-- -->
     
+    <!-- jQuery 2.2.0 -->
+    <script   src="<c:url value="/resources/template/plugins/jQuery/jQuery-2.2.0.min.js"/>"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script   src="<c:url value="/resources/template/bootstrap/js/bootstrap.min.js"/>"></script>
+    <!-- AdminLTE App -->
+    <script   src="<c:url value="/resources/template/dist/js/app.min.js"/>"></script>
     
     <decorator:head />
     <body class="hold-transition skin-blue sidebar-mini">
@@ -42,7 +47,7 @@
             <header class="main-header">
 
                 <!-- Logo -->
-                <a href="index2.html" class="logo">
+                <a href="#" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
@@ -215,7 +220,7 @@
                   <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="<c:url value="/resources/template/dist/img/user2-160x160.jpg"/>" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>Alexander Pierce</p>
@@ -241,7 +246,9 @@
                         <li class="header">HEADER</li>
                         <!-- Optionally, you can add icons to the links -->
                         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+                        <li>            
+                            <html:link action="vexe.do"><i class="fa fa-link"></i> <span>Quản lý vé xe</span></html:link>
+                        </li>
                         <li class="treeview">
                             <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
@@ -367,11 +374,5 @@
 
         <!-- REQUIRED JS SCRIPTS -->
 
-        <!-- jQuery 2.2.0 -->
-        <script   src="<c:url value="/resources/template/plugins/jQuery/jQuery-2.2.0.min.js"/>"></script>
-        <!-- Bootstrap 3.3.6 -->
-        <script   src="<c:url value="/resources/template/bootstrap/js/bootstrap.min.js"/>"></script>
-        <!-- AdminLTE App -->
-        <script   src="<c:url value="/resources/template/dist/js/app.min.js"/>"></script>
     </body>
 </html>
