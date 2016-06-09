@@ -11,14 +11,6 @@
 -->
 
     <global>
-
-        <!-- An example global constant
-        <constant>
-            <constant-name>postalCode</constant-name>
-            <constant-value>^\d{5}\d*$</constant-value>
-        </constant>
-        end example-->
-
     </global>
 
     <formset>
@@ -40,7 +32,29 @@
                     </var>
             </field>
         </form>
-
+        
+        <!-- An themvexe form-->
+        <form name="VeXeForm">
+            <field
+                property="hoten"
+                depends="required">
+                    <arg key="VeXeForm.hoten"/>
+            </field>
+            <field
+                property="dienthoai"
+                depends="required,mask">
+                    <arg key="VeXeForm.dienthoai"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9]*$</var-value>
+                    </var>
+            </field>
+            <field
+                property="danhsachghe"
+                depends="required">
+                    <arg key="VeXeForm.danhsachghe"/>
+            </field>
+        </form>
     </formset>
 
     <!-- An example formset for another locale -->

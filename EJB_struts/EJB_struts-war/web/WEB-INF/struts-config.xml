@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="VeXeForm" type="actionform.quanlyvexe.VeXeForm"/>
         <form-bean name="TraCuuChuyenDiForm" type="actionform.quanlyvexe.TraCuuChuyenDiForm"/>
         <form-bean name="BenXeForm" type="actionform.BenXe.BenXeForm"/>
     </form-beans>
@@ -19,13 +20,16 @@
         <action input="/" name="BenXeForm" path="/thembenxe" scope="request" type="action.quanlybenxe.ThemBenXe" validate="false">
             <forward name="success" path="/pages/welcomeStruts.jsp"/>
         </action>
-        <action path="/vexe" type="action.quanlyvexe.index" name="TraCuuChuyenDiForm">
-            <forward name="success" path="/pages/vexe/index.jsp"/>
+        
+        <action path="/vexe" type="action.quanlyvexe.VeXeAction" validate="false" parameter="method" name="TraCuuChuyenDiForm">
+            <forward name="vexe" path="/pages/vexe/index.jsp"/>
         </action>
         
-        <action path="/vexe/tracuu" input="/pages/vexe/index.jsp" name="TraCuuChuyenDiForm" type="action.quanlyvexe.TraCuuChuyenDi"/>
+        <action path="/vexe/lapphieu" name="VeXeForm" parameter="method" type="action.quanlyvexe.VeXeAction" 
+                validate="true" input="/pages/vexe/index.jsp"/>
         
         <action path="/index" forward="/pages/welcomeStruts.jsp"/>
+       
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

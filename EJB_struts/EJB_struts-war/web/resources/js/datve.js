@@ -4,21 +4,6 @@ $(function () {
         defaultDate: new Date(),
         format: 'HH:mm DD/MM/YYYY'
     });
-
-    var settings = {
-        typeCar: 0, //
-        map: ['aaaaaaa', //  'a' is seat, '_' is empty
-            '______a',
-            'aaaaaaa',
-            '______a',
-            'aaaaaaa'],
-        seatCss: 'icon_seat',
-        selectedSeatCss: 'seat_selected',
-        selectingSeatCss: 'seat_selecting',
-        pathImgSeat: 'resources/images/bed-white.png' // must be png
-    };
-
-    initSeats(settings);
 });
 
 
@@ -39,6 +24,14 @@ function initSeats(settings) {
         }
 
         return temp;
+    }
+
+    // setup booked seat (payment, not payment)
+    function initBookedSeat(bookedSeats, cssBookedSeat){
+        for(var i in bookedSeats){
+            var id = "#" + bookedSeats[i].toString().replace(' ','');
+            $(id).children(":first").addClass(cssBookedSeat);
+        }
     }
 
     // draw seat chart
@@ -77,7 +70,8 @@ function initSeats(settings) {
     // setup event select on seat
     $("a.link_icon_seat").click(function () {
         var $img = $(this).children(":first");
-        if (!$img.hasClass(settings.selectedSeatCss)) {
+        if (!$img.hasClass(settings.bookedSeatPaymentCss) && 
+                !$img.hasClass(settings.bookedSeatNotPaymentCss)) {
 
             var $inputGhe = $('#text_amount_seat');
             var $textTotalPrice = $('#text_total_price_seat');
@@ -86,13 +80,73 @@ function initSeats(settings) {
             if ($img.hasClass(settings.selectingSeatCss)) {
                 $img.removeClass(settings.selectingSeatCss);
                 $inputGhe.text($inputGhe.text().replace(formatTextSeat, ""));
-                $textTotalPrice.text(parseInt($textTotalPrice.text()) - parseInt($('#text_seat_price').attr("name")));
+                $textTotalPrice.text(parseInt($textTotalPrice.text()) - parseInt($('#lapve_giave').attr("name")));
             } else {
                 $img.addClass(settings.selectingSeatCss);
                 $inputGhe.text($inputGhe.text() + formatTextSeat);
-                $textTotalPrice.text(parseInt($textTotalPrice.text()) + parseInt($('#text_seat_price').attr("name")));
+                $textTotalPrice.text(parseInt($textTotalPrice.text()) + parseInt($('#lapve_giave').attr("name")));
             }
         }
     });
+    
+    // init bookedseats
+    initBookedSeat(settings.bookedSeatPayment, settings.bookedSeatPaymentCss);
+    initBookedSeat(settings.bookedSeatNotPayment, settings.bookedSeatNotPaymentCss);
 }
 // end
+
+function timKiemChuyenDi() {
+    $.post('vexe.do?method=tracuuchuyendi', $("#searchChuyenDi").serialize(), function (response) {
+        $('#placeSearchChuyenDi').html(response);
+    }, "text");
+}
+                    
+function initFormLapVe(tuyen, khoihanh, gia, machuyendi){
+    $('#lapve_tuyendi').text(tuyen);
+    $('#lapve_khoihanh').text(khoihanh);
+    $('#lapve_giave').attr('name', gia);
+    $('#lapve_giave').text(gia);
+    $('#lapve_machuyendi').val(machuyendi);
+
+    $.get('vexe.do?method=thongtinchuyendi', { idchuyendi: machuyendi}, function (response) {
+
+        var strArray1 = $(response).find('BookedPayment').text();
+        var strArray2 = $(response).find('BookedNotPayment').text();
+        
+        var settings = {
+            typeCar: 0, //
+            map: ['aaaaaaa', //  'a' is seat, '_' is empty
+                '______a',
+                'aaaaaaa',
+                '______a',
+                'aaaaaaa'],
+            seatCss: 'icon_seat',
+            bookedSeatNotPayment: strArray2.replace('[','').replace(']','').split(','),
+            bookedSeatPayment: strArray1.replace('[','').replace(']','').split(','),
+            bookedSeatNotPaymentCss: 'seat_bookedSeatNotPayment',
+            bookedSeatPaymentCss: 'seat_bookedSeatPayment',
+            selectingSeatCss: 'seat_selecting',
+            pathImgSeat: 'resources/images/bed-white.png' // must be png
+        };
+        initSeats(settings);
+        
+    }, "xml");
+    
+    
+}
+
+
+ function lapPhieuDatCho(form){
+    
+    $("#formPhieuDatCho").submit(function(e) {
+        alert('ok');
+        e.preventDefault();
+        
+        validateVeXeForm(this);
+    });
+    /*
+        $.post('vexe/lapphieu.do?method=taoPhieuDatCho', $("#formPhieuDatCho").serialize(), function (response) {
+            alert('ok');
+        }, "text");
+        */  
+}

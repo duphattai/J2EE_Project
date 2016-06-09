@@ -30,4 +30,5 @@ public interface TblchitietphieudatchoFacadeLocal {
 
     int count();
     
+    List<Tblchitietphieudatcho> getCTPhieuDatChoForMaChuyenDi(int machuyendi);
 }

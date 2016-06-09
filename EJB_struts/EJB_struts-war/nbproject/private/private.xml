@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/src/java/action/quanlyvexe/TraCuuChuyenDi.java</file>
-            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/web/resources/js/datve.js</file>
+            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/web/WEB-INF/decorators.xml</file>
+            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/web/WEB-INF/struts-config.xml</file>
+            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/src/java/actionform/quanlyvexe/TraCuuChuyenDiForm.java</file>
+            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/src/java/action/quanlyvexe/VeXeAction.java</file>
             <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/web/pages/vexe/index.jsp</file>
         </group>
     </open-files>

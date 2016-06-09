@@ -41,5 +41,5 @@ public class TraCuuChuyenDiForm extends org.apache.struts.action.ActionForm {
     public void setKhoiHanh(String khoiHanh) {
         this.khoiHanh = khoiHanh;
     }
-    
+
 }

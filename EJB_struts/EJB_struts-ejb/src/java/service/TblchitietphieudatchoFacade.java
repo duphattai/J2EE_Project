@@ -6,9 +6,12 @@
 package service;
 
 import entity.Tblchitietphieudatcho;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -29,4 +32,17 @@ public class TblchitietphieudatchoFacade extends AbstractFacade<Tblchitietphieud
         super(Tblchitietphieudatcho.class);
     }
     
+    public List<Tblchitietphieudatcho> getCTPhieuDatChoForMaChuyenDi(int machuyendi){
+        try{
+            String sql = "SELECT pdc "
+                    +" FROM Tblchitietphieudatcho pdc"
+                    +" WHERE pdc.machuyendi = :machuyendi";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("machuyendi", machuyendi);
+         
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }  
+    }
 }
