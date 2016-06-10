@@ -4,6 +4,10 @@ $(function () {
         defaultDate: new Date(),
         format: 'HH:mm DD/MM/YYYY'
     });
+    
+    $('#vexe_hoten').attr('placeholder', 'Họ tên');
+    $('#vexe_email').attr('placeholder', 'Email');
+    $('#vexe_dienthoai').attr('placeholder', 'Số điện thoại');
 });
 
 
@@ -87,6 +91,8 @@ function initSeats(settings) {
                 $textTotalPrice.text(parseInt($textTotalPrice.text()) + parseInt($('#lapve_giave').attr("name")));
             }
         }
+        
+        return false;
     });
     
     // init bookedseats
@@ -135,18 +141,13 @@ function initFormLapVe(tuyen, khoihanh, gia, machuyendi){
     
 }
 
-
- function lapPhieuDatCho(form){
+function lapPhieuDatCho(form){
+    $('#vexe_danhsachghe').val($('#text_amount_seat').text()); 
     
-    $("#formPhieuDatCho").submit(function(e) {
-        alert('ok');
-        e.preventDefault();
-        
-        validateVeXeForm(this);
-    });
+    return validateVeXeForm(form);
     /*
         $.post('vexe/lapphieu.do?method=taoPhieuDatCho', $("#formPhieuDatCho").serialize(), function (response) {
             alert('ok');
         }, "text");
         */  
-}
+};

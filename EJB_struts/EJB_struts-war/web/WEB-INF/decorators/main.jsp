@@ -34,6 +34,7 @@
     <script   src="<c:url value="/resources/template/plugins/jQuery/jQuery-2.2.0.min.js"/>"></script>
     <!-- Bootstrap 3.3.6 -->
     <script   src="<c:url value="/resources/template/bootstrap/js/bootstrap.min.js"/>"></script>
+
     <!-- AdminLTE App -->
     <script   src="<c:url value="/resources/template/dist/js/app.min.js"/>"></script>
     

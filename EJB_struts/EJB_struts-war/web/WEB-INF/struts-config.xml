@@ -21,12 +21,14 @@
             <forward name="success" path="/pages/welcomeStruts.jsp"/>
         </action>
         
-        <action path="/vexe" type="action.quanlyvexe.VeXeAction" validate="false" parameter="method" name="TraCuuChuyenDiForm">
+        <action path="/vexe" type="action.quanlyvexe.VeXeAction" validate="false" scope="request" parameter="method" name="TraCuuChuyenDiForm">
             <forward name="vexe" path="/pages/vexe/index.jsp"/>
         </action>
         
         <action path="/vexe/lapphieu" name="VeXeForm" parameter="method" type="action.quanlyvexe.VeXeAction" 
-                validate="true" input="/pages/vexe/index.jsp"/>
+               scope="request" validate="true" input="/pages/vexe/index.jsp">
+            <forward name="vexe" path="/pages/vexe/index.jsp"/>
+        </action>
         
         <action path="/index" forward="/pages/welcomeStruts.jsp"/>
        
