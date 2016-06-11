@@ -1,0 +1,25 @@
+.table-margin{
+    margin: 10px;
+}
+tr.text_middle td{
+	vertical-align: middle !important;
+}
+#lapChuyenDiModal .tr_header{
+	color: rgb(255, 255, 255);
+	background-color: rgb(36, 97, 170);
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 700;
+}
+#lapChuyenDiModal .modal-header{
+	padding: 5px 10px;
+}
+#lapChuyenDiModal .modal-body{
+	padding-bottom: 0px;
+}
+#lapChuyenDiModal .modal-footer{
+	padding: 5px 15px;
+}
+#lapChuyenDiModal td{
+	padding: 0px;
+}

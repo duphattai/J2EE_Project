@@ -19,7 +19,16 @@ public class VeXeForm extends org.apache.struts.validator.ValidatorForm {
     private String email;
     private String danhsachghe;
     private boolean thanhtoan;
+    private int machuyendi;
 
+    public int getMachuyendi() {
+        return machuyendi;
+    }
+
+    public void setMachuyendi(int machuyendi) {
+        this.machuyendi = machuyendi;
+    }
+    
     public int getMaphieu() {
         return maphieu;
     }

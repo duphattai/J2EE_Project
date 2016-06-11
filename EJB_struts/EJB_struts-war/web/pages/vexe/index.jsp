@@ -73,8 +73,8 @@
     </div>
 
     <!-- Modal -->
-    <div id="lapVeModal">
-        <div style="width:1024px; margin:auto;">
+    <div id="lapVeModal" class="modal fade" role="dialog">
+        <div style="width:1024px; margin:auto;" class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header"><h4 class="modal-title">Modal Header</h4></div>
@@ -111,7 +111,7 @@
                                             <tr>
                                                 <td>Tuyến đường</td>
                                                 <td>
-                                                    <input type="hidden" id="lapve_machuyendi" readonly="true"/>
+                                                    <html:hidden property="machuyendi" styleId="lapve_machuyendi"></html:hidden>
                                                     <strong id="lapve_tuyendi"></strong>
                                                 </td>
                                             </tr>
@@ -182,7 +182,7 @@
                     </div>
                     <div class="modal-footer">
                         <html:submit styleClass="btn btn-primary">Đồng ý</html:submit>
-                        <button type="button" class="btn btn-default">Hủy</button>
+                        <button type="button" data-dismiss="modal"  class="btn btn-default">Hủy</button>
                     </div>
                 </html:form>
             </div>

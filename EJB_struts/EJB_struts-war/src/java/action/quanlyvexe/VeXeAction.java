@@ -11,6 +11,7 @@ import entity.Tblbenxe;
 import entity.Tblchitietphieudatcho;
 import entity.Tblchuyendi;
 import entity.Tblloaixe;
+import entity.Tblphieudatcho;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,7 +83,7 @@ public class VeXeAction extends DispatchAction {
                     "<td>" + soghe + "</td>" +
                     "<td>" + chuyendi.getDongia()+ "</td>" +
                     "<td>" +
-                    "<a href=\"#\" class=\"btn btn-warning\" onclick=\"" + function +"\">Lập vé</a>" +
+                    "<a href=\"#\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#lapVeModal\" onclick=\"" + function +"\">Lập vé</a>" +
                     "</td>" +
                     "</tr>";
         }
@@ -134,9 +135,60 @@ public class VeXeAction extends DispatchAction {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception{
         
+        String xml = "<DOCUMENT>";
         managesessionbean.ManageSessionBean msb = new ManageSessionBean();
         VeXeForm myForm = (VeXeForm) form;
+        final String format = ", "; // format phu thuoc vao initSeats() strong datve.js
         
+        xml += "<MESSAGE>";
+        // validate logic
+        Boolean error = false;
+        if(msb.tblchuyendiFacade.find(myForm.getMachuyendi()) == null){
+            error = true;
+             xml += "Chuyến đi không tồn tại";
+        }
+        for (String item : myForm.getDanhsachghe().split(format)) {
+            if(msb.tblchitietphieudatchoFacade.checkExistForMaChuyenDiAndViTriGhe(myForm.getMachuyendi(), item)){
+                xml += "Ghế " + item + " không còn trống<br/>";
+            }
+        }
+       
+        
+        
+        // setup data
+        if(!error){
+            Tblphieudatcho pdc = new Tblphieudatcho();
+        
+            pdc.setDienthoai(myForm.getDienthoai());
+            pdc.setEmail(myForm.getEmail());
+            pdc.setNgaydat(new Date());
+            pdc.setHoten(myForm.getHoten());
+
+            msb.tblphieudatchoFacade.create(pdc);
+
+
+            for (String item : myForm.getDanhsachghe().split(format)) {
+                Tblchitietphieudatcho ctpdc = new Tblchitietphieudatcho();
+                ctpdc.setLayve(myForm.isThanhtoan());
+                ctpdc.setMaphieu(pdc.getMaphieu());
+                ctpdc.setMachuyendi(myForm.getMachuyendi());
+                if(myForm.isThanhtoan())
+                    ctpdc.setNgaylay(new Date());
+                ctpdc.setVitrighe(item);
+
+                msb.tblchitietphieudatchoFacade.create(ctpdc);
+            }
+            
+            xml += "Lập vé thành công";
+        }
+        
+        xml += "</MESSAGE>";
+        xml += "</DOCUMENT>";
+        response.setContentType("text/xml;charset=utf-8");
+        response.setHeader("cache-control", "no-cache");
+        
+        response.getWriter().println(xml);
+        response.getWriter().flush();
         return null;
     }
 }

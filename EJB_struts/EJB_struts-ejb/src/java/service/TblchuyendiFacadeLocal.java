@@ -32,5 +32,5 @@ public interface TblchuyendiFacadeLocal {
     int count();
     
     List<Object[]> traCuuChuyenDi(int mabendi, int mabenden, Date khoihanh);
-    
+    List<Object[]> traCuuChuyenDi(List<Integer> matuyen);
 }

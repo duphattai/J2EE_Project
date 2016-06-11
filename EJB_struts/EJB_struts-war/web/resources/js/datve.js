@@ -142,12 +142,13 @@ function initFormLapVe(tuyen, khoihanh, gia, machuyendi){
 }
 
 function lapPhieuDatCho(form){
-    $('#vexe_danhsachghe').val($('#text_amount_seat').text()); 
     
-    return validateVeXeForm(form);
-    /*
-        $.post('vexe/lapphieu.do?method=taoPhieuDatCho', $("#formPhieuDatCho").serialize(), function (response) {
-            alert('ok');
+    $('#vexe_danhsachghe').val($('#text_amount_seat').text()); 
+    if(validateVeXeForm(form)){
+        $.post('vexe/lapphieu.do?method=taoPhieuDatCho', $(form).serialize(), function (response) {
+            
         }, "text");
-        */  
+    }
+
+    return false;
 };

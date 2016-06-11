@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="ChuyenDiForm" type="actionform.quanlychuyendi.ChuyenDiForm"/>
         <form-bean name="VeXeForm" type="actionform.quanlyvexe.VeXeForm"/>
         <form-bean name="TraCuuChuyenDiForm" type="actionform.quanlyvexe.TraCuuChuyenDiForm"/>
         <form-bean name="BenXeForm" type="actionform.BenXe.BenXeForm"/>
@@ -30,6 +31,12 @@
             <forward name="vexe" path="/pages/vexe/index.jsp"/>
         </action>
         
+        
+        <!-- Chuyen di-->
+        <action  path="/quanlychuyendi" type="action.quanlychuyendi.ChuyenDiAction" name="ChuyenDiForm" parameter="method" validate="false">
+            <forward name="success" path="/pages/chuyendi/index.jsp"/>
+        </action>
+        <!---->
         <action path="/index" forward="/pages/welcomeStruts.jsp"/>
        
     </action-mappings>

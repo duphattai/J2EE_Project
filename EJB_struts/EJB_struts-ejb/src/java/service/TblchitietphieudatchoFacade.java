@@ -45,4 +45,17 @@ public class TblchitietphieudatchoFacade extends AbstractFacade<Tblchitietphieud
             return null;
         }  
     }
+    public Boolean checkExistForMaChuyenDiAndViTriGhe(int machuyendi, String vitrighe){
+        try{
+            String sql = "SELECT pdc "
+                    +" FROM Tblchitietphieudatcho pdc"
+                    +" WHERE pdc.machuyendi = :machuyendi AND pdc.vitrighe = :vitrighe";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("machuyendi", machuyendi);
+            query.setParameter("vitrighe", vitrighe);
+            return query.getResultList().size() == 0 ? false : true;
+        }catch(Exception ex){
+            return false;
+        }  
+    }
 }

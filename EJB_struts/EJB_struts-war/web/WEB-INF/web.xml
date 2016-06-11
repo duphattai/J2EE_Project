@@ -18,6 +18,10 @@
         <load-on-startup>2</load-on-startup>
     </servlet>
     <!-- Sitemesh-->
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
     <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>
@@ -29,9 +33,18 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>action</servlet-name>
         <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -39,6 +52,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     <jsp-config>
@@ -63,7 +77,7 @@
             <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
         </taglib>
     </jsp-config>
-     <ejb-local-ref>
+    <ejb-local-ref>
         <ejb-ref-name>TblbenxeFacade</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.TblbenxeFacadeLocal</local>

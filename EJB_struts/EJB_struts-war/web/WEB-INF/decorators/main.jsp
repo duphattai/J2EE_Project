@@ -250,6 +250,9 @@
                         <li>            
                             <html:link action="vexe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý vé xe</span></html:link>
                         </li>
+                         <li>            
+                            <html:link action="quanlychuyendi.do?method=index&mabendi=-1&mabenden=-1"><i class="fa fa-link"></i> <span>Quản lý chuyến đi</span></html:link>
+                        </li>
                         <li class="treeview">
                             <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">

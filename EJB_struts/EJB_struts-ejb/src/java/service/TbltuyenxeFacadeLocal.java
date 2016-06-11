@@ -37,4 +37,6 @@ public interface TbltuyenxeFacadeLocal {
     
     int count();
     
+    List<Tbltuyenxe> getTuyenXeForBenXeDi(int mabenxe);
+    List<Tbltuyenxe> getTuyenXeForBenXeDen(int mabenxe);
 }

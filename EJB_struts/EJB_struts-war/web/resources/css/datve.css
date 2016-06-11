@@ -4,15 +4,6 @@
 tr.text_middle td{
 	vertical-align: middle !important;
 }
-#lapVeModal .modal-header{
-	padding: 5px 10px;
-}
-#lapVeModal .modal-body{
-	padding-bottom: 0px;
-}
-#lapVeModal .modal-footer{
-	padding: 5px 15px;
-}
 #lapVeModal #placeSeat{
     min-width: 416px;
 }

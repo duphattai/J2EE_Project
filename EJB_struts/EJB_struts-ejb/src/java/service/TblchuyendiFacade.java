@@ -9,6 +9,7 @@ import entity.Tblbenxe;
 import entity.Tblchuyendi;
 import entity.Tbltuyenxe;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -51,6 +52,21 @@ public class TblchuyendiFacade extends AbstractFacade<Tblchuyendi> implements Tb
             query.setParameter("matuyen", tx.getMatuyen());
             query.setParameter("khoihanh", khoihanh, TemporalType.DATE);
          
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+    public List<Object[]> traCuuChuyenDi(List<Integer> matuyen){
+        try{
+            String sql = "SELECT cd, bxdi, bxden, lx, xk"
+                        +" FROM Tblxekhach xk, Tblchuyendi cd, Tblbenxe bxdi, Tblbenxe bxden, Tbltuyenxe tx, Tblloaixe lx"
+                        +" WHERE xk.matuyen IN :matuyens AND xk.maxe = cd.maxe AND tx.matuyen = xk.matuyen" 
+                        +" AND bxdi.mabenxe = tx.mabendi AND bxden.mabenxe = tx.mabenden AND xk.maloaixe = lx.maloaixe";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("matuyens", matuyen);
+            
             return query.getResultList();
         }catch(Exception ex){
             return null;
