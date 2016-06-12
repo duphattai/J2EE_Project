@@ -281,7 +281,7 @@
                 </section>
 
                 <!-- Main content -->
-                <section class="content">
+                <section class="content row">
                     <!-- Your Page Content Here -->
                     <decorator:body />   
                 </section>

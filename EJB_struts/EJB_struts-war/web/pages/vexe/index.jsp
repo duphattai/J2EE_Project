@@ -13,11 +13,11 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <div>
-    <link rel="stylesheet" href="<c:url value="resources/css/bootstrap-datetimepicker.css" />" >
-    <script src="<c:url value="resources/js/moment.js"/>" ></script>
-    <script src="<c:url value="resources/js/bootstrap-datetimepicker.min.js"/>" ></script>
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-datetimepicker.css" />" >
+    <script src="<c:url value="/resources/js/moment.js"/>" ></script>
+    <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js"/>" ></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/datve.css" />" >
-    <script src="<c:url value="resources/js/datve.js"/>" ></script>
+    <script src="<c:url value="/resources/js/datve.js"/>" ></script>
     
 
     <html:form styleClass="form-horizontal" action="vexe" styleId="searchChuyenDi">

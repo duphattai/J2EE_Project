@@ -33,4 +33,5 @@ public interface TblchuyendiFacadeLocal {
     
     List<Object[]> traCuuChuyenDi(int mabendi, int mabenden, Date khoihanh);
     List<Object[]> traCuuChuyenDi(List<Integer> matuyen);
+    List<Tblchuyendi> getChuyenDiByMaXe(int maxekhach);
 }

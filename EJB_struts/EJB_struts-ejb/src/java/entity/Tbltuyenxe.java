@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tbltuyenxe.findByMatuyen", query = "SELECT t FROM Tbltuyenxe t WHERE t.matuyen = :matuyen"),
     @NamedQuery(name = "Tbltuyenxe.findByMabendi", query = "SELECT t FROM Tbltuyenxe t WHERE t.mabendi = :mabendi"),
     @NamedQuery(name = "Tbltuyenxe.findByMabenden", query = "SELECT t FROM Tbltuyenxe t WHERE t.mabenden = :mabenden"),
-    @NamedQuery(name = "Tbltuyenxe.findByThoigian", query = "SELECT t FROM Tbltuyenxe t WHERE t.thoigian = :thoigian")})
+    @NamedQuery(name = "Tbltuyenxe.findByThoigian", query = "SELECT t FROM Tbltuyenxe t WHERE t.thoigian = :thoigian"),
+    @NamedQuery(name = "Tbltuyenxe.findByDongia", query = "SELECT t FROM Tbltuyenxe t WHERE t.dongia = :dongia")})
 public class Tbltuyenxe implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +52,10 @@ public class Tbltuyenxe implements Serializable {
     @NotNull
     @Column(name = "thoigian")
     private int thoigian;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "dongia")
+    private int dongia;
 
     public Tbltuyenxe() {
     }
@@ -59,11 +64,12 @@ public class Tbltuyenxe implements Serializable {
         this.matuyen = matuyen;
     }
 
-    public Tbltuyenxe(Integer matuyen, int mabendi, int mabenden, int thoigian) {
+    public Tbltuyenxe(Integer matuyen, int mabendi, int mabenden, int thoigian, int dongia) {
         this.matuyen = matuyen;
         this.mabendi = mabendi;
         this.mabenden = mabenden;
         this.thoigian = thoigian;
+        this.dongia = dongia;
     }
 
     public Integer getMatuyen() {
@@ -96,6 +102,14 @@ public class Tbltuyenxe implements Serializable {
 
     public void setThoigian(int thoigian) {
         this.thoigian = thoigian;
+    }
+
+    public int getDongia() {
+        return dongia;
+    }
+
+    public void setDongia(int dongia) {
+        this.dongia = dongia;
     }
 
     @Override

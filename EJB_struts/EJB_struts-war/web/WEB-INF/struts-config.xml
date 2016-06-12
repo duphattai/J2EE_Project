@@ -33,8 +33,9 @@
         
         
         <!-- Chuyen di-->
-        <action  path="/quanlychuyendi" type="action.quanlychuyendi.ChuyenDiAction" name="ChuyenDiForm" parameter="method" validate="false">
+        <action  path="/quanlychuyendi" type="action.quanlychuyendi.ChuyenDiAction" scope="request" name="ChuyenDiForm" parameter="method" validate="false">
             <forward name="success" path="/pages/chuyendi/index.jsp"/>
+            <forward name="tracuuxekhach" path="/pages/chuyendi/laplichchuyendi.jsp"/>
         </action>
         <!---->
         <action path="/index" forward="/pages/welcomeStruts.jsp"/>

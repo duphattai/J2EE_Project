@@ -34,7 +34,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tblchuyendi.findByMaxe", query = "SELECT t FROM Tblchuyendi t WHERE t.maxe = :maxe"),
     @NamedQuery(name = "Tblchuyendi.findByKhoihanh", query = "SELECT t FROM Tblchuyendi t WHERE t.khoihanh = :khoihanh"),
     @NamedQuery(name = "Tblchuyendi.findByKetthuc", query = "SELECT t FROM Tblchuyendi t WHERE t.ketthuc = :ketthuc"),
-    @NamedQuery(name = "Tblchuyendi.findByDongia", query = "SELECT t FROM Tblchuyendi t WHERE t.dongia = :dongia"),
     @NamedQuery(name = "Tblchuyendi.findBySoghetrong", query = "SELECT t FROM Tblchuyendi t WHERE t.soghetrong = :soghetrong"),
     @NamedQuery(name = "Tblchuyendi.findBySoghedat", query = "SELECT t FROM Tblchuyendi t WHERE t.soghedat = :soghedat")})
 public class Tblchuyendi implements Serializable {
@@ -57,10 +56,6 @@ public class Tblchuyendi implements Serializable {
     private Date ketthuc;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "dongia")
-    private int dongia;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "soghetrong")
     private int soghetrong;
     @Basic(optional = false)
@@ -75,10 +70,9 @@ public class Tblchuyendi implements Serializable {
         this.machuyendi = machuyendi;
     }
 
-    public Tblchuyendi(Integer machuyendi, int maxe, int dongia, int soghetrong, int soghedat) {
+    public Tblchuyendi(Integer machuyendi, int maxe, int soghetrong, int soghedat) {
         this.machuyendi = machuyendi;
         this.maxe = maxe;
-        this.dongia = dongia;
         this.soghetrong = soghetrong;
         this.soghedat = soghedat;
     }
@@ -113,14 +107,6 @@ public class Tblchuyendi implements Serializable {
 
     public void setKetthuc(Date ketthuc) {
         this.ketthuc = ketthuc;
-    }
-
-    public int getDongia() {
-        return dongia;
-    }
-
-    public void setDongia(int dongia) {
-        this.dongia = dongia;
     }
 
     public int getSoghetrong() {

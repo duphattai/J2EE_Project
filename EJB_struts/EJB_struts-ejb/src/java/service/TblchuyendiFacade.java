@@ -5,11 +5,9 @@
  */
 package service;
 
-import entity.Tblbenxe;
+
 import entity.Tblchuyendi;
 import entity.Tbltuyenxe;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -44,7 +42,7 @@ public class TblchuyendiFacade extends AbstractFacade<Tblchuyendi> implements Tb
         try{
             Tbltuyenxe tx = (new TbltuyenxeFacade()).getTuyenXeForBenXeDiAndBenXeDen(mabendi, mabenden);
             
-            String sql = "SELECT cd, bxdi, bxden, lx "
+            String sql = "SELECT cd, bxdi, bxden, lx, tx"
                         +" FROM Tblxekhach xk, Tblchuyendi cd, Tblbenxe bxdi, Tblbenxe bxden, Tbltuyenxe tx, Tblloaixe lx"
                         +" WHERE xk.matuyen = :matuyen AND xk.maxe = cd.maxe AND tx.matuyen = xk.matuyen AND cd.khoihanh > :khoihanh" 
                         +" AND bxdi.mabenxe = tx.mabendi AND bxden.mabenxe = tx.mabenden AND xk.maloaixe = lx.maloaixe";
@@ -58,9 +56,20 @@ public class TblchuyendiFacade extends AbstractFacade<Tblchuyendi> implements Tb
         }
     }
     
+    public List<Tblchuyendi> getChuyenDiByMaXe(int maxekhach){
+        try{
+            Query query = getEntityManager().createNamedQuery("Tblchuyendi.findByMaxe");
+            query.setParameter("maxe", maxekhach);
+         
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
     public List<Object[]> traCuuChuyenDi(List<Integer> matuyen){
         try{
-            String sql = "SELECT cd, bxdi, bxden, lx, xk"
+            String sql = "SELECT cd, bxdi, bxden, lx, xk, tx"
                         +" FROM Tblxekhach xk, Tblchuyendi cd, Tblbenxe bxdi, Tblbenxe bxden, Tbltuyenxe tx, Tblloaixe lx"
                         +" WHERE xk.matuyen IN :matuyens AND xk.maxe = cd.maxe AND tx.matuyen = xk.matuyen" 
                         +" AND bxdi.mabenxe = tx.mabendi AND bxden.mabenxe = tx.mabenden AND xk.maloaixe = lx.maloaixe";

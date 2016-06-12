@@ -12,6 +12,7 @@ import entity.Tblchitietphieudatcho;
 import entity.Tblchuyendi;
 import entity.Tblloaixe;
 import entity.Tblphieudatcho;
+import entity.Tbltuyenxe;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,7 +65,7 @@ public class VeXeAction extends DispatchAction {
             Tblbenxe benxedi = (Tblbenxe)object[1];
             Tblbenxe benxeden = (Tblbenxe)object[2];
             Tblloaixe lx = (Tblloaixe)object[3];
-            
+            Tbltuyenxe tx = (Tbltuyenxe)object[4];
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm 'Ngày' dd/MM/yyyy");
             String khoihanh = sdf.format(chuyendi.getKhoihanh());
             String ketthuc =  sdf.format(chuyendi.getKetthuc());
@@ -72,7 +73,7 @@ public class VeXeAction extends DispatchAction {
             
 
             String function = String.format("initFormLapVe('%1s','%2s','%3s','%4s')", benxedi.getTenbenxe() + " - " + benxeden.getTenbenxe(),
-                                                                                        khoiHanh, chuyendi.getDongia(), chuyendi.getMachuyendi());
+                                                                                        khoiHanh, tx.getDongia(), chuyendi.getMachuyendi());
             
             html += "<tr class=\"text_middle\">" +
                     "<td><a href=\"#\">" + benxedi.getTenbenxe() + " đến " + benxeden.getTenbenxe() + "</a></td>" +
@@ -81,7 +82,7 @@ public class VeXeAction extends DispatchAction {
                     "</td>" +
                     "<td>" + lx.getLoaixe() + "</td>" +
                     "<td>" + soghe + "</td>" +
-                    "<td>" + chuyendi.getDongia()+ "</td>" +
+                    "<td>" + tx.getDongia() + "</td>" +
                     "<td>" +
                     "<a href=\"#\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#lapVeModal\" onclick=\"" + function +"\">Lập vé</a>" +
                     "</td>" +

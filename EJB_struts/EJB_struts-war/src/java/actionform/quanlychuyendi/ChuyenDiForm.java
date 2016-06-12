@@ -5,6 +5,10 @@
  */
 package actionform.quanlychuyendi;
 
+import entity.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Tai
@@ -20,21 +24,46 @@ public class ChuyenDiForm extends org.apache.struts.action.ActionForm {
     private String benxedi;
     private String benxeden;
     private String khoihanh;
+    private int thoigiandi;
     private String ketthuc;
+    private String taixe;
 
-    public ChuyenDiForm(int machuyendi, int maxekhach, String biensoxe, String loaixe, int soghe, String benxedi, String benxeden, String khoihanh, String ketthuc) {
-        this.machuyendi = machuyendi;
-        this.maxekhach = maxekhach;
-        this.biensoxe = biensoxe;
-        this.loaixe = loaixe;
-        this.soghe = soghe;
-        this.benxedi = benxedi;
-        this.benxeden = benxeden;
-        this.khoihanh = khoihanh;
-        this.ketthuc = ketthuc;
+    public ChuyenDiForm(Tblchuyendi cd, Tblxekhach xk, Tblbenxe bxdi, Tblbenxe bxden, Tblloaixe lx, Tbltuyenxe tx) {
+        if(cd != null){
+            this.machuyendi = cd.getMachuyendi();
+            
+            SimpleDateFormat sf = new SimpleDateFormat("HH:mm");
+            this.khoihanh = sf.format(cd.getKhoihanh());
+            this.ketthuc = sf.format(cd.getKetthuc());
+        }
+            
+        this.maxekhach = xk.getMaxe();
+        this.biensoxe = xk.getBiensoxe();
+        this.loaixe = lx.getLoaixe();
+        this.soghe = xk.getSoghe();
+        this.benxedi = bxdi.getTenbenxe();
+        this.benxeden = bxden.getTenbenxe();
+        this.thoigiandi = tx.getThoigian();
+        this.taixe = xk.getTaixe();
+    }
+    
+    public String getTaixe() {
+        return taixe;
+    }
+
+    public void setTaixe(String taixe) {
+        this.taixe = taixe;
     }
 
     public ChuyenDiForm() {
+    }
+
+    public int getThoigiandi() {
+        return thoigiandi;
+    }
+
+    public void setThoigiandi(int thoigiandi) {
+        this.thoigiandi = thoigiandi;
     }
     
     

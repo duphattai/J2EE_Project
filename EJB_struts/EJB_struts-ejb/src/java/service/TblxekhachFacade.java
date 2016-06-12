@@ -6,9 +6,11 @@
 package service;
 
 import entity.Tblxekhach;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,18 @@ public class TblxekhachFacade extends AbstractFacade<Tblxekhach> implements Tblx
     public TblxekhachFacade() {
         super(Tblxekhach.class);
     }
-    
+    public List<Object[]> getXeKhachByTuyenXeList(List<Integer> matuyen){
+        try{
+            String sql = "SELECT bxdi, bxden, lx, xk, tx"
+                        +" FROM Tblxekhach xk, Tblbenxe bxdi, Tblbenxe bxden, Tbltuyenxe tx, Tblloaixe lx"
+                        +" WHERE xk.matuyen IN :matuyens AND tx.matuyen = xk.matuyen" 
+                        +" AND bxdi.mabenxe = tx.mabendi AND bxden.mabenxe = tx.mabenden AND xk.maloaixe = lx.maloaixe";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("matuyens", matuyen);
+            
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }
