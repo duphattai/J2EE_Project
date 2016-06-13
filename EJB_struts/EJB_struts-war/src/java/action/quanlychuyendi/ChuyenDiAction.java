@@ -9,7 +9,9 @@ import actionform.quanlychuyendi.ChuyenDiForm;
 import entity.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,7 @@ import org.apache.struts.action.ActionForward;
 public class ChuyenDiAction extends DispatchAction {
 
     private ManageSessionBean msb = new ManageSessionBean();
+    private String[] dayOfWeek = {"Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chủ nhật"};
     
     public ActionForward index(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
@@ -111,28 +114,47 @@ public class ChuyenDiAction extends DispatchAction {
         
         Boolean error = false;
         SimpleDateFormat sf = new SimpleDateFormat("HH:mm a");
-        Date khoiHanh = sf.parse(frm.getKhoihanh());
-        Date ketThuc = sf.parse(frm.getKetthuc());
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.HOUR, sf.parse(frm.getKhoihanh()).getHours());
+        calendar.set(Calendar.MINUTE, sf.parse(frm.getKhoihanh()).getMinutes());
         
         String xml = "<DOCUMENT>";
         xml += "<MESSAGE>";
+        String message = "";
         for (Tblchuyendi cd : msb.tblchuyendiFacade.getChuyenDiByMaXe(frm.getMaxekhach())) {
             if(cd.getMachuyendi() != frm.getMachuyendi()){
-                if(khoiHanh.getHours() == cd.getKhoihanh().getHours() &&  
-                        khoiHanh.getMinutes() == cd.getKhoihanh().getMinutes()){
-                    xml += "Khởi hành " + frm.getKhoihanh() +" bị trùng thời gian!";
-                    error = true;
-                    break;
+                for (String dayofweek : frm.getNgaytrongtuan()) {
+                    // set day of week
+                    calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(dayofweek));
+                    Date kh = calendar.getTime();
+                    if(kh.getHours() == cd.getKhoihanh().getHours() &&  
+                        kh.getMinutes() == cd.getKhoihanh().getMinutes() && kh.getDay() == cd.getKhoihanh().getDay()){
+                        message += dayOfWeek[Integer.parseInt(dayofweek)] + " ";
+                        xml += "Khởi hành " + dayOfWeek[Integer.parseInt(dayofweek)] + " " +  frm.getKhoihanh() +" bị trùng thời gian!<br/>";
+                        error = true;
+                    }
                 }
             }
         }
+        if(!message.isEmpty()){
+            xml += "Khởi hành " + message +  frm.getKhoihanh() +" bị trùng thời gian!<br/>";
+        }
         
         if(!error){
-            Tblchuyendi editCD = msb.tblchuyendiFacade.find(frm.getMachuyendi());
-            editCD.setKhoihanh(khoiHanh);
-            editCD.setKetthuc(ketThuc);
+            calendar.set(Calendar.HOUR, sf.parse(frm.getKhoihanh()).getHours());
+            calendar.set(Calendar.MINUTE, sf.parse(frm.getKhoihanh()).getMinutes());
+            for (String dayofweek : frm.getNgaytrongtuan()) {
+                Tblchuyendi editCD = msb.tblchuyendiFacade.find(frm.getMachuyendi());
+
+                calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(dayofweek));
+                editCD.setKhoihanh(calendar.getTime());
+                
+                calendar.add(Calendar.MINUTE, frm.getThoigiandi());
+                editCD.setKetthuc(calendar.getTime());
+
+                msb.tblchuyendiFacade.edit(editCD);
+            }
             
-            msb.tblchuyendiFacade.edit(editCD);
             xml += "Cập nhật thành công";
         }
         xml += "</MESSAGE>";
@@ -153,30 +175,52 @@ public class ChuyenDiAction extends DispatchAction {
         
         Boolean error = false;
         SimpleDateFormat sf = new SimpleDateFormat("HH:mm a");
-        Date khoiHanh = sf.parse(frm.getKhoihanh());
-        Date ketThuc = sf.parse(frm.getKetthuc());
+        Calendar calendar = new GregorianCalendar();
+        
+        calendar.set(Calendar.HOUR, sf.parse(frm.getKhoihanh()).getHours());
+        calendar.set(Calendar.MINUTE, sf.parse(frm.getKhoihanh()).getMinutes());
         
         String xml = "<DOCUMENT>";
         xml += "<MESSAGE>";
+        String message = "";
         for (Tblchuyendi cd : msb.tblchuyendiFacade.getChuyenDiByMaXe(frm.getMaxekhach())) {
-            if(khoiHanh.getHours() == cd.getKhoihanh().getHours() &&  
-                    khoiHanh.getMinutes() == cd.getKhoihanh().getMinutes()){
-                xml += "Khởi hành " + frm.getKhoihanh() +" bị trùng thời gian!";
-                error = true;
-                break;
+            for (String dayofweek : frm.getNgaytrongtuan()) {
+                // set day of week
+                calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(dayofweek));
+                calendar.set(Calendar.WEEK_OF_MONTH, 1);
+                Date kh = calendar.getTime();
+                if(kh.getHours() == cd.getKhoihanh().getHours() &&  
+                    kh.getMinutes() == cd.getKhoihanh().getMinutes() && kh.getDay() == cd.getKhoihanh().getDay()){
+                    message += dayOfWeek[Integer.parseInt(dayofweek)] + " ";
+                    error = true;
+                }
             }
         }
+        if(!message.isEmpty()){
+            xml += "Khởi hành " + message +  frm.getKhoihanh() +" bị trùng thời gian!<br/>";
+        }
+        
         
         if(!error){
-            Tblchuyendi cd = new Tblchuyendi();
-
-            cd.setKhoihanh(khoiHanh);
-            cd.setKetthuc(ketThuc);
-            cd.setMaxe(frm.getMaxekhach());
-            cd.setSoghedat(0);
-            cd.setSoghetrong(0);
+            calendar.set(Calendar.HOUR, sf.parse(frm.getKhoihanh()).getHours());
+            calendar.set(Calendar.MINUTE, sf.parse(frm.getKhoihanh()).getMinutes());
             
-            msb.tblchuyendiFacade.create(cd);
+            for (String dayofweek : frm.getNgaytrongtuan()) {
+                Tblchuyendi cd = new Tblchuyendi();
+                calendar.set(Calendar.DAY_OF_WEEK, Integer.parseInt(dayofweek));
+                calendar.set(Calendar.WEEK_OF_MONTH, 1);
+                
+                cd.setKhoihanh(calendar.getTime());
+                
+                calendar.add(Calendar.MINUTE, frm.getThoigiandi());
+                cd.setKetthuc(calendar.getTime());
+                cd.setMaxe(frm.getMaxekhach());
+                cd.setSoghedat(0);
+                cd.setSoghetrong(0);
+            
+                msb.tblchuyendiFacade.create(cd);
+            }
+            
             xml += "Thêm thành công";
         }
         xml += "</MESSAGE>";

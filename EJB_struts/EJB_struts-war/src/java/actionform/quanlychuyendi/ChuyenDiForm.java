@@ -7,7 +7,6 @@ package actionform.quanlychuyendi;
 
 import entity.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -27,7 +26,9 @@ public class ChuyenDiForm extends org.apache.struts.action.ActionForm {
     private int thoigiandi;
     private String ketthuc;
     private String taixe;
-
+    private String []ngaytrongtuan;
+    private String thu;
+    
     public ChuyenDiForm(Tblchuyendi cd, Tblxekhach xk, Tblbenxe bxdi, Tblbenxe bxden, Tblloaixe lx, Tbltuyenxe tx) {
         if(cd != null){
             this.machuyendi = cd.getMachuyendi();
@@ -35,6 +36,10 @@ public class ChuyenDiForm extends org.apache.struts.action.ActionForm {
             SimpleDateFormat sf = new SimpleDateFormat("HH:mm");
             this.khoihanh = sf.format(cd.getKhoihanh());
             this.ketthuc = sf.format(cd.getKetthuc());
+            
+            String[] dayOfWeek = {"Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chủ nhật"};
+            setNgaytrongtuan(new String[]{cd.getKhoihanh().getDay() + ""});
+            thu = dayOfWeek[cd.getKhoihanh().getDay()];
         }
             
         this.maxekhach = xk.getMaxe();
@@ -45,6 +50,18 @@ public class ChuyenDiForm extends org.apache.struts.action.ActionForm {
         this.benxeden = bxden.getTenbenxe();
         this.thoigiandi = tx.getThoigian();
         this.taixe = xk.getTaixe();
+    }
+
+    public String getThu() {
+        return thu;
+    }
+
+    public String[] getNgaytrongtuan() {
+        return ngaytrongtuan;
+    }
+
+    public void setNgaytrongtuan(String[] ngaytrongtuan) {
+        this.ngaytrongtuan = ngaytrongtuan;
     }
     
     public String getTaixe() {

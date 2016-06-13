@@ -55,9 +55,9 @@
     <!---------------------------------------------------->
     <div id="placeSearchChuyenDi" class="row">
         <c:forEach var="chuyendi" items="${listchuyendi}">
-            <html:form action="quanlychuyendi">
-                <div id="${chuyendi.machuyendi}" class="col-sm-4" style="padding:5px;">
-                    <div  class="col-sm-12" style="border-bottom:1px solid; background: white; border-top-left-radius:5px;border-top-right-radius:5px;">
+            <html:form action="quanlychuyendi" styleClass="form-horizontal">
+                <div id="div_${chuyendi.machuyendi}" class="col-sm-4" style="padding:5px;">
+                    <div class="col-sm-12 item_chuyendi" style="border-bottom: 1px solid;">
                         <div class="col-sm-4">
                             <span>Biển số</span>
                             <h5 style="margin-top: 5px;">${chuyendi.biensoxe}</h5>                
@@ -67,24 +67,15 @@
                             <h5 style="margin-top: 5px;">Số ghế: ${chuyendi.soghe}</h5>                
                         </div>
                         <div class="col-sm-3" style="padding:5px 0px; text-align:right">
-                            <a href="#${chuyendi.machuyendi}" class="save" role="button" onclick="return saveEditChuyenDi(this);" style="font-size:1.2em; display:none;"><span><i class="fa fa-check-circle" aria-hidden="true"></i></span></a>
-                            <a href="#${chuyendi.machuyendi}" onclick="return editChuyenDi(this);" role="button" style="font-size:1.2em;"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
-                            <a href="#${chuyendi.machuyendi}" role="button" style="font-size:1.2em;"><span><i class="fa fa-times-circle" aria-hidden="true"></i></span></a>
+                            <a href="#div_${chuyendi.machuyendi}" class="save" role="button" onclick="return saveEditChuyenDi(this);" style="font-size:1.2em; display:none;"><span><i class="fa fa-check-circle" aria-hidden="true"></i></span></a>
+                            <a href="#div_${chuyendi.machuyendi}" class="edit" onclick="return editChuyenDi(this);" role="button" style="font-size:1.2em;"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                            <a href="#div_${chuyendi.machuyendi}" role="button" style="font-size:1.2em;"><span><i class="fa fa-times-circle" aria-hidden="true"></i></span></a>
                         </div>
                     </div>
-                    <div id="div_${chuyendi.machuyendi}" class="col-sm-12" style="padding:5px; background: white; background: white; border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                    <div class="col-sm-12 item_chuyendi">
                         <div class="col-sm-5">
                             <span style="color: rgb(123, 123, 123);">Bến xe đi</span>
                             <h4 style="margin:0;">${chuyendi.benxedi}</h4>
-                            <h4 style="margin-bottom:0;">
-                                <div class="input-group date">
-                                    <input type="hidden" value="${chuyendi.thoigiandi}"/>
-                                    <a href="#div_${chuyendi.machuyendi}" onclick="return false">
-                                         <input name="khoihanh" class="input-group-addon datetimepicker editKH" style="width:70%; border:none; background:white" 
-                                           type="text" value="${chuyendi.khoihanh}" disabled/>
-                                    </a>
-                                </div>
-                            </h4>
                         </div>
                         <div class="col-sm-2">
                             <h3>→</h3>
@@ -92,15 +83,31 @@
                         <div class="col-sm-5" style="margin-left">
                             <span style="color: rgb(123, 123, 123);">Bến xe đến</span>
                             <h4 style="margin:0;">${chuyendi.benxeden}</h4>
-                            <h4 style="margin-bottom:0;">
-                                <div class="input-group date">
-                                    <input name="ketthuc" class="input-group-addon datetimepicker editKT" style="width:70%; border:none; background:white" 
-                                           readonly type="text" value="${chuyendi.ketthuc}" disabled/>
-                                </div>
-                            </h4>
                         </div>
                     </div>  
+                    <div class="col-sm-12 item_chuyendi">
+                        <div class="col-sm-6">
+                            <div style="padding:3px 0px; float: left">${chuyendi.thu}</div>
+                            <div class="input-group date">
+                                <html:hidden property="thoigiandi" value="${chuyendi.thoigiandi}"></html:hidden>
+                                <a href="#div_${chuyendi.machuyendi}" onclick="return false">
+                                    <input name="khoihanh" class="input-group-addon datetimepicker editKH" style="width:100%; border:none; background:white" 
+                                       type="text" value="${chuyendi.khoihanh}" disabled/>
+                                </a>
+                            </div>
+                        </div>
+                                    
+                        <div class="col-sm-offset-1 col-sm-4">
+                                <div class="input-group date">
+                                    <input name="ketthuc" class="input-group-addon datetimepicker editKT" style="width:100%; border:none; background:white" 
+                                           readonly type="text" value="${chuyendi.ketthuc}" disabled/>
+                                </div>
+                        </div>
+                    </div>
                     <html:hidden property="machuyendi" value="${chuyendi.machuyendi}"/>
+                    <c:forEach var="ngay" items="${chuyendi.ngaytrongtuan}">
+                        <html:hidden property="ngaytrongtuan" value="${ngay}"></html:hidden>
+                    </c:forEach>
                     <html:hidden property="maxekhach" value="${chuyendi.maxekhach}"/>
                 </div>
             </html:form>

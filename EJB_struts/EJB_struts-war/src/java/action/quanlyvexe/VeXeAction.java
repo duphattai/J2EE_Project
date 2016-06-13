@@ -7,12 +7,7 @@ package action.quanlyvexe;
 
 import actionform.quanlyvexe.TraCuuChuyenDiForm;
 import actionform.quanlyvexe.VeXeForm;
-import entity.Tblbenxe;
-import entity.Tblchitietphieudatcho;
-import entity.Tblchuyendi;
-import entity.Tblloaixe;
-import entity.Tblphieudatcho;
-import entity.Tbltuyenxe;
+import entity.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +27,6 @@ import org.apache.struts.action.ActionForward;
  */
 public class VeXeAction extends DispatchAction {
 
-    /* forward name="success" path="" */
 
     public ActionForward index(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)

@@ -77,9 +77,10 @@
                         <div class="collapse" id="formll_${chuyendi.maxekhach}">
                             <html:form action="quanlychuyendi.do?method=add" onsubmit="return addChuyenDi(this)">
                                 <html:hidden property="maxekhach" value="${chuyendi.maxekhach}"/>
+                                <html:hidden property="thoigiandi" value="${chuyendi.thoigiandi}"/>
                                 <div id="div_${chuyendi.maxekhach}" class="col-sm-12" style="padding:5px; background: white; border: 1px solid rgb(204, 204, 204); background: white; border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
-                                    <div class="col-sm-4">
-                                        <div style="width:70%; margin-top: 5px;">
+                                    <div class="col-sm-2">
+                                        <div style="margin-top: 5px;">
                                             <div class="input-group date">
                                                 <input type="hidden" value="${chuyendi.thoigiandi}"/>
                                                 <a href="#div_${chuyendi.maxekhach}" onclick="return false;">
@@ -95,8 +96,8 @@
                                     <div class="col-sm-1">
                                         <h4>→</h4>
                                     </div>
-                                    <div class="col-sm-offset-1 col-sm-4" style="margin-left">
-                                        <div style="width:70%; margin-top: 5px;">
+                                    <div class="col-sm-2" style="margin-left">
+                                        <div style="margin-top: 5px;">
                                             <div class="input-group date datetimepicker">
                                                 <input class="form-control editKT" name="ketthuc" type="text" placeholder="Kết thúc" readonly="true"/>
                                                 <span style="" class="input-group-addon">
@@ -105,6 +106,54 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-5" style="margin-left">
+                                        <fieldset style="border: 1px solid silver;margin-top: -5px;">
+                                            <legend class="cus_legend">Ngày trong tuần</legend>
+                                            <table style="margin: 0 auto;width: 90%;">
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="ngaytrongtuan" value="1"> Thứ hai
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="ngaytrongtuan" value="2"> Thứ ba
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="ngaytrongtuan" value="3"> Thứ tư
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="ngaytrongtuan" value="4"> Thứ năm
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="ngaytrongtuan" value="5"> Thứ sáu
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="ngaytrongtuan" value="6"> Thứ bảy
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="ngaytrongtuan" value="0"> Chủ nhật
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </div>                
                                     <div class="col-sm-2" style="padding-top: 6px;">
                                         <button type="submit" style="float:right;" class="btn btn-primary btn-sm">Tạo</button>
                                     </div>

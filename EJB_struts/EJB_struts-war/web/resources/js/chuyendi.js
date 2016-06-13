@@ -10,7 +10,6 @@ $(function () {
         var hh = parseInt(pars[0].split(':')[0]) + (pars[1] == 'AM' ? 0 : 12);
         var mm = parseInt(pars[0].split(':')[1]);
         var tgd = parseInt($(this).parent().parent().find('input[type=hidden]').val());
-        
        
         var total = hh * 60 + mm + tgd;
         hh = Math.floor(total / 60);
@@ -37,7 +36,9 @@ function saveEditChuyenDi($this){
     }, "text");
     
     $(id).find('.save').css("display", "none");
+    $(id).find('.edit').css("display", "");
     $(id).find('input').prop("disabled", true);
+    $(id).find('input').css("border", "none");
 }
 
 function addChuyenDi(form) {

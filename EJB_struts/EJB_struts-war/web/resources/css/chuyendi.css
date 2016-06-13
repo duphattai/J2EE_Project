@@ -23,3 +23,14 @@ tr.text_middle td{
 #lapChuyenDiModal td{
 	padding: 0px;
 }
+.cus_legend{
+    width: auto;
+    border-bottom: none;
+    margin-bottom: 0;
+    font-size: 15px;
+}
+.item_chuyendi{
+    background: white none repeat scroll 0% 0%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
