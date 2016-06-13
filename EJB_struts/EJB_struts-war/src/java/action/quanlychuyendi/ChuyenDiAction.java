@@ -30,7 +30,7 @@ import org.apache.struts.action.ActionForward;
 public class ChuyenDiAction extends DispatchAction {
 
     private ManageSessionBean msb = new ManageSessionBean();
-    private String[] dayOfWeek = {"Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chủ nhật"};
+    private String[] dayOfWeek = {"Chủ nhật ", "Thứ hai ", "Thứ ba ", "Thứ tư ", "Thứ năm ", "Thứ sáu ", "Thứ bảy "};
     
     public ActionForward index(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)

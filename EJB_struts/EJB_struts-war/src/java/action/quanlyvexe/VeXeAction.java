@@ -27,7 +27,8 @@ import org.apache.struts.action.ActionForward;
  */
 public class VeXeAction extends DispatchAction {
 
-
+    private String[] dayOfWeek = {"Chủ nhật ", "Thứ hai ", "Thứ ba ", "Thứ tư ", "Thứ năm ", "Thứ sáu ", "Thứ bảy "};
+    
     public ActionForward index(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -48,40 +49,46 @@ public class VeXeAction extends DispatchAction {
         
         managesessionbean.ManageSessionBean msb = new ManageSessionBean();
         
-        SimpleDateFormat sf = new SimpleDateFormat("HH:mm dd/MM/yyyy");
-        Date khoiHanh = sf.parse(myform.getKhoiHanh());
-        List<Object[]> listChuyenDi = msb.tblchuyendiFacade.traCuuChuyenDi(myform.getMaBenDi(), myform.getMaBenDen(), khoiHanh);
+        List<Object[]> listChuyenDi = msb.tblchuyendiFacade.traCuuChuyenDi(myform.getMaBenDi(), myform.getMaBenDen());
         
         String html = "";
-        for (Object object[] : listChuyenDi) {
-            
-            Tblchuyendi chuyendi = (Tblchuyendi)object[0];
-            Tblbenxe benxedi = (Tblbenxe)object[1];
-            Tblbenxe benxeden = (Tblbenxe)object[2];
-            Tblloaixe lx = (Tblloaixe)object[3];
-            Tbltuyenxe tx = (Tbltuyenxe)object[4];
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm 'Ngày' dd/MM/yyyy");
-            String khoihanh = sdf.format(chuyendi.getKhoihanh());
-            String ketthuc =  sdf.format(chuyendi.getKetthuc());
-            String soghe = chuyendi.getSoghedat() + "/" + (chuyendi.getSoghedat() + chuyendi.getSoghetrong());
-            
+        SimpleDateFormat sf = new SimpleDateFormat("HH:mm");
+        Date khoiHanh = new Date(myform.getKhoiHanh());
+        if(listChuyenDi != null){
+            for (Object object[] : listChuyenDi) {
+                Tblchuyendi chuyendi = (Tblchuyendi)object[0];
+                if(chuyendi.getKhoihanh().getDay() == khoiHanh.getDay() &&
+                       sf.parse(myform.getKhoiHanh()).compareTo(sf.parse(sf.format(chuyendi.getKhoihanh()))) < 0)
+                {
+                    Tblbenxe benxedi = (Tblbenxe)object[1];
+                    Tblbenxe benxeden = (Tblbenxe)object[2];
+                    Tblloaixe lx = (Tblloaixe)object[3];
+                    Tbltuyenxe tx = (Tbltuyenxe)object[4];
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    String khoihanh = sf.format(chuyendi.getKhoihanh());
+                    String ketthuc =  sf.format(chuyendi.getKetthuc());
+                    String soghe = chuyendi.getSoghedat() + "/" + (chuyendi.getSoghedat() + chuyendi.getSoghetrong());
 
-            String function = String.format("initFormLapVe('%1s','%2s','%3s','%4s')", benxedi.getTenbenxe() + " - " + benxeden.getTenbenxe(),
-                                                                                        khoiHanh, tx.getDongia(), chuyendi.getMachuyendi());
-            
-            html += "<tr class=\"text_middle\">" +
-                    "<td><a href=\"#\">" + benxedi.getTenbenxe() + " đến " + benxeden.getTenbenxe() + "</a></td>" +
-                    "<td class=\"row\">" + khoihanh +
-                    "<i class=\"fa fa-long-arrow-right\" style=\"padding: 0 10px;\" aria-hidden=\"true\"></i>"+ ketthuc +
-                    "</td>" +
-                    "<td>" + lx.getLoaixe() + "</td>" +
-                    "<td>" + soghe + "</td>" +
-                    "<td>" + tx.getDongia() + "</td>" +
-                    "<td>" +
-                    "<a href=\"#\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#lapVeModal\" onclick=\"" + function +"\">Lập vé</a>" +
-                    "</td>" +
-                    "</tr>";
+
+                    String function = String.format("initFormLapVe('%1s','%2s','%3s','%4s')", benxedi.getTenbenxe() + " - " + benxeden.getTenbenxe(),
+                                                                                              khoihanh + " " + sdf.format(khoiHanh), tx.getDongia(), chuyendi.getMachuyendi());
+
+                    html += "<tr class=\"text_middle\">" +
+                            "<td><a href=\"#\">" + benxedi.getTenbenxe() + " đến " + benxeden.getTenbenxe() + "</a></td>" +
+                            "<td class=\"row\">" + dayOfWeek[chuyendi.getKhoihanh().getDay()] + khoihanh +
+                            "<i class=\"fa fa-long-arrow-right\" style=\"padding: 0 10px;\" aria-hidden=\"true\"></i>"+ dayOfWeek[chuyendi.getKetthuc().getDay()] + ketthuc +
+                            "</td>" +
+                            "<td>" + lx.getLoaixe() + "</td>" +
+                            "<td>" + soghe + "</td>" +
+                            "<td>" + tx.getDongia() + "</td>" +
+                            "<td>" +
+                            "<a href=\"#\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#lapVeModal\" onclick=\"" + function +"\">Lập vé</a>" +
+                            "</td>" +
+                            "</tr>";
+                }
+            }
         }
+       
         response.setContentType("text/xml;charset=utf-8");
         response.setHeader("cache-control", "no-cache");
         
@@ -140,12 +147,21 @@ public class VeXeAction extends DispatchAction {
         Boolean error = false;
         if(msb.tblchuyendiFacade.find(myForm.getMachuyendi()) == null){
             error = true;
-             xml += "Chuyến đi không tồn tại";
+            xml += "Chuyến đi không tồn tại";
         }
+        
+        SimpleDateFormat sf = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+        Date ngaydi = sf.parse(myForm.getNgaydi());
+        
+        String message = "";
         for (String item : myForm.getDanhsachghe().split(format)) {
-            if(msb.tblchitietphieudatchoFacade.checkExistForMaChuyenDiAndViTriGhe(myForm.getMachuyendi(), item)){
-                xml += "Ghế " + item + " không còn trống<br/>";
+            if(msb.tblchitietphieudatchoFacade.checkExistForMaChuyenDiAndViTriGhe(myForm.getMachuyendi(), item, ngaydi)){
+                message += item + ", ";
+                error = true;
             }
+        }
+        if(!message.isEmpty()){
+            xml += "Ghế " + message + " không còn trống<br/>";
         }
        
         
@@ -153,28 +169,35 @@ public class VeXeAction extends DispatchAction {
         // setup data
         if(!error){
             Tblphieudatcho pdc = new Tblphieudatcho();
-        
-            pdc.setDienthoai(myForm.getDienthoai());
-            pdc.setEmail(myForm.getEmail());
-            pdc.setNgaydat(new Date());
-            pdc.setHoten(myForm.getHoten());
-
-            msb.tblphieudatchoFacade.create(pdc);
-
-
-            for (String item : myForm.getDanhsachghe().split(format)) {
-                Tblchitietphieudatcho ctpdc = new Tblchitietphieudatcho();
-                ctpdc.setLayve(myForm.isThanhtoan());
-                ctpdc.setMaphieu(pdc.getMaphieu());
-                ctpdc.setMachuyendi(myForm.getMachuyendi());
-                if(myForm.isThanhtoan())
-                    ctpdc.setNgaylay(new Date());
-                ctpdc.setVitrighe(item);
-
-                msb.tblchitietphieudatchoFacade.create(ctpdc);
-            }
             
-            xml += "Lập vé thành công";
+            try{
+                pdc.setDienthoai(myForm.getDienthoai());
+                pdc.setEmail(myForm.getEmail());
+                pdc.setNgaydat(new Date());
+                pdc.setHoten(myForm.getHoten());
+                pdc.setNgaydi(ngaydi);
+                msb.tblphieudatchoFacade.create(pdc);
+
+
+                for (String item : myForm.getDanhsachghe().split(format)) {
+                    Tblchitietphieudatcho ctpdc = new Tblchitietphieudatcho();
+                    ctpdc.setLayve(myForm.isThanhtoan());
+                    ctpdc.setMaphieu(pdc.getMaphieu());
+                    ctpdc.setMachuyendi(myForm.getMachuyendi());
+                    ctpdc.setNgaylay(new Date());
+                    ctpdc.setVitrighe(item);
+
+                    msb.tblchitietphieudatchoFacade.create(ctpdc);
+                }
+
+                xml += "Lập vé thành công";
+            }catch(RuntimeException ex){
+                xml += "Không thể thêm phiếu đặt chỗ";
+                msb.tblphieudatchoFacade.remove(pdc);
+            }
+            catch(Exception ex){
+                xml += "Không thể thêm phiếu đặt chỗ";
+            }
         }
         
         xml += "</MESSAGE>";

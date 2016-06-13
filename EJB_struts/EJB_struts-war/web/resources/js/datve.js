@@ -108,8 +108,13 @@ function timKiemChuyenDi() {
 }
                     
 function initFormLapVe(tuyen, khoihanh, gia, machuyendi){
+    $("#text_amount_seat").text("");
+    $("#vexe_email").val("");
+    $("#vexe_hoten").val("");
+    $("#vexe_dienthoai").val("");
+    
     $('#lapve_tuyendi').text(tuyen);
-    $('#lapve_khoihanh').text(khoihanh);
+    $('#lapve_khoihanh').val(khoihanh);
     $('#lapve_giave').attr('name', gia);
     $('#lapve_giave').text(gia);
     $('#lapve_machuyendi').val(machuyendi);
@@ -137,16 +142,13 @@ function initFormLapVe(tuyen, khoihanh, gia, machuyendi){
         initSeats(settings);
         
     }, "xml");
-    
-    
 }
 
 function lapPhieuDatCho(form){
-    
     $('#vexe_danhsachghe').val($('#text_amount_seat').text()); 
     if(validateVeXeForm(form)){
         $.post('vexe/lapphieu.do?method=taoPhieuDatCho', $(form).serialize(), function (response) {
-            
+            $("div[name='message']").text($(response).find("MESSAGE").text());
         }, "text");
     }
 

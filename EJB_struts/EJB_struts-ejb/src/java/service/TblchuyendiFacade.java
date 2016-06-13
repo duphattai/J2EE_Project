@@ -38,17 +38,16 @@ public class TblchuyendiFacade extends AbstractFacade<Tblchuyendi> implements Tb
     }
     
     
-    public List<Object[]> traCuuChuyenDi(int mabendi, int mabenden, Date khoihanh){
+    public List<Object[]> traCuuChuyenDi(int mabendi, int mabenden){
         try{
             Tbltuyenxe tx = (new TbltuyenxeFacade()).getTuyenXeForBenXeDiAndBenXeDen(mabendi, mabenden);
             
             String sql = "SELECT cd, bxdi, bxden, lx, tx"
                         +" FROM Tblxekhach xk, Tblchuyendi cd, Tblbenxe bxdi, Tblbenxe bxden, Tbltuyenxe tx, Tblloaixe lx"
-                        +" WHERE xk.matuyen = :matuyen AND xk.maxe = cd.maxe AND tx.matuyen = xk.matuyen AND cd.khoihanh > :khoihanh" 
+                        +" WHERE xk.matuyen = :matuyen AND xk.maxe = cd.maxe AND tx.matuyen = xk.matuyen" 
                         +" AND bxdi.mabenxe = tx.mabendi AND bxden.mabenxe = tx.mabenden AND xk.maloaixe = lx.maloaixe";
             Query query = getEntityManager().createQuery(sql);
             query.setParameter("matuyen", tx.getMatuyen());
-            query.setParameter("khoihanh", khoihanh, TemporalType.DATE);
          
             return query.getResultList();
         }catch(Exception ex){

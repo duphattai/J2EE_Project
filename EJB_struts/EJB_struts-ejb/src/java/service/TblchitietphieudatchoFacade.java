@@ -6,6 +6,7 @@
 package service;
 
 import entity.Tblchitietphieudatcho;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -45,14 +46,16 @@ public class TblchitietphieudatchoFacade extends AbstractFacade<Tblchitietphieud
             return null;
         }  
     }
-    public Boolean checkExistForMaChuyenDiAndViTriGhe(int machuyendi, String vitrighe){
+    public Boolean checkExistForMaChuyenDiAndViTriGhe(int machuyendi, String vitrighe, Date ngaydi){
         try{
-            String sql = "SELECT pdc "
-                    +" FROM Tblchitietphieudatcho pdc"
-                    +" WHERE pdc.machuyendi = :machuyendi AND pdc.vitrighe = :vitrighe";
+            String sql = "SELECT ctpdc FROM Tblchitietphieudatcho ctpdc, Tblphieudatcho pdc"
+                    +" WHERE ctpdc.maphieu = pdc.maphieu AND pdc.machuyendi = :machuyendi AND pdc.vitrighe = :vitrighe"
+                    +" AND MONTH(pdc.ngaydat) = MONTH(:ngaydi) AND DAY(pdc.ngaydat) = DAY(:ngaydi)";
             Query query = getEntityManager().createQuery(sql);
             query.setParameter("machuyendi", machuyendi);
             query.setParameter("vitrighe", vitrighe);
+            query.setParameter("ngaydi", ngaydi, TemporalType.TIMESTAMP);
+            
             return query.getResultList().size() == 0 ? false : true;
         }catch(Exception ex){
             return false;

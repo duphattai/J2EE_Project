@@ -37,7 +37,7 @@ public class ChuyenDiForm extends org.apache.struts.action.ActionForm {
             this.khoihanh = sf.format(cd.getKhoihanh());
             this.ketthuc = sf.format(cd.getKetthuc());
             
-            String[] dayOfWeek = {"Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy", "Chủ nhật"};
+            String[] dayOfWeek = {"Chủ nhật ", "Thứ hai ", "Thứ ba ", "Thứ tư ", "Thứ năm ", "Thứ sáu ", "Thứ bảy "};
             setNgaytrongtuan(new String[]{cd.getKhoihanh().getDay() + ""});
             thu = dayOfWeek[cd.getKhoihanh().getDay()];
         }

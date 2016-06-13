@@ -6,6 +6,7 @@
 package service;
 
 import entity.Tblchitietphieudatcho;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,5 +32,6 @@ public interface TblchitietphieudatchoFacadeLocal {
     int count();
     
     List<Tblchitietphieudatcho> getCTPhieuDatChoForMaChuyenDi(int machuyendi);
-    public Boolean checkExistForMaChuyenDiAndViTriGhe(int machuyendi, String vitrighe);
+    
+    public Boolean checkExistForMaChuyenDiAndViTriGhe(int machuyendi, String vitrighe, Date ngaydi);
 }

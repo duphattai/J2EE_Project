@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tblphieudatcho.findByHoten", query = "SELECT t FROM Tblphieudatcho t WHERE t.hoten = :hoten"),
     @NamedQuery(name = "Tblphieudatcho.findByDienthoai", query = "SELECT t FROM Tblphieudatcho t WHERE t.dienthoai = :dienthoai"),
     @NamedQuery(name = "Tblphieudatcho.findByNgaydat", query = "SELECT t FROM Tblphieudatcho t WHERE t.ngaydat = :ngaydat"),
-    @NamedQuery(name = "Tblphieudatcho.findByEmail", query = "SELECT t FROM Tblphieudatcho t WHERE t.email = :email")})
+    @NamedQuery(name = "Tblphieudatcho.findByEmail", query = "SELECT t FROM Tblphieudatcho t WHERE t.email = :email"),
+    @NamedQuery(name = "Tblphieudatcho.findByNgaydi", query = "SELECT t FROM Tblphieudatcho t WHERE t.ngaydi = :ngaydi")})
 public class Tblphieudatcho implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,6 +62,11 @@ public class Tblphieudatcho implements Serializable {
     @Size(max = 45)
     @Column(name = "email")
     private String email;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ngaydi")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ngaydi;
 
     public Tblphieudatcho() {
     }
@@ -69,10 +75,11 @@ public class Tblphieudatcho implements Serializable {
         this.maphieu = maphieu;
     }
 
-    public Tblphieudatcho(Integer maphieu, String hoten, String dienthoai) {
+    public Tblphieudatcho(Integer maphieu, String hoten, String dienthoai, Date ngaydi) {
         this.maphieu = maphieu;
         this.hoten = hoten;
         this.dienthoai = dienthoai;
+        this.ngaydi = ngaydi;
     }
 
     public Integer getMaphieu() {
@@ -113,6 +120,14 @@ public class Tblphieudatcho implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getNgaydi() {
+        return ngaydi;
+    }
+
+    public void setNgaydi(Date ngaydi) {
+        this.ngaydi = ngaydi;
     }
 
     @Override

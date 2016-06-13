@@ -117,7 +117,9 @@
                                             </tr>
                                             <tr>
                                                 <td>Khởi hành</td>
-                                                <td><strong id="lapve_khoihanh"></strong></td>
+                                                <td>
+                                                    <input name="ngaydi" id="lapve_khoihanh" readonly="true" style="border: 0; width:100%"/>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Giá vé</td>
@@ -139,12 +141,12 @@
                                             <tr>
                                                 <td>
                                                     <label class="radio-inline">
-                                                        <input name="thanhtoan" value="true" checked type="radio">Đã thanh toán
+                                                        <input name="thanhtoan" value="1" checked type="radio">Đã thanh toán
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="radio-inline">
-                                                        <input name="thanhtoan" value="false" type="radio">Chưa thanh toán
+                                                        <input name="thanhtoan" value="0" type="radio">Chưa thanh toán
                                                     </label>
                                                 </td>
                                             </tr>
@@ -172,13 +174,12 @@
                                                     <html:text styleClass="form-control" styleId="vexe_dienthoai" property="dienthoai"></html:text>
                                                 </div>
                                             </div>
-                                            <html:errors />
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
+                        <div name="message"></div>
                     </div>
                     <div class="modal-footer">
                         <html:submit styleClass="btn btn-primary">Đồng ý</html:submit>
