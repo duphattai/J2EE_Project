@@ -250,11 +250,14 @@
                             <html:link action="vexe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý vé xe</span></html:link>
                         </li>
                         <li class="treeview">
-                            <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <a href="#"><i class="fa fa-link"></i> <span>Quản lý xe</span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a href="#">Link in level 2</a></li>
-                                <li><a href="#">Link in level 2</a></li>
+                                <li><html:link action="quanlyloaixe.do?method=list"><i class="fa fa-link"></i> <span>Quản lý loại xe</span></html:link></li>
+                                <li><html:link action="quanlyxe.do?method=list"><i class="fa fa-link"></i> <span>Quản lý xe</span></html:link></li>
                             </ul>
+                        </li>
+                        <li>            
+                            <html:link action="taikhoan.do?method=list"><i class="fa fa-link"></i> <span>Quản lý tài khoản</span></html:link>
                         </li>
                     </ul>
                     <!-- /.sidebar-menu -->

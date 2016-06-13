@@ -128,4 +128,9 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.TblxekhachFacadeLocal</local>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>TbltaikhoanFacade</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.TbltaikhoanFacadeLocal</local>
+    </ejb-local-ref>
 </web-app>

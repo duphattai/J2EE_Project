@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/entity/Tblxekhach.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TblxekhachFacade.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/entity/Tblloaixe.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/entity/Tblbenxe.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TblphanquyenFacade.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TbltaikhoanFacade.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TbltuyenxeFacade.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TblloaixeFacade.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/entity/Tblphanquyen.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TblbenxeFacade.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -8,6 +8,7 @@ package service;
 import entity.Tbltaikhoan;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -18,7 +19,7 @@ import javax.persistence.PersistenceContext;
 public class TbltaikhoanFacade extends AbstractFacade<Tbltaikhoan> implements TbltaikhoanFacadeLocal {
 
     @PersistenceContext(unitName = "EJB_struts-ejbPU")
-    private EntityManager em;
+    private EntityManager em = Persistence.createEntityManagerFactory("EJB_struts-ejbPU").createEntityManager();
 
     @Override
     protected EntityManager getEntityManager() {

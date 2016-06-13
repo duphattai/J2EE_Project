@@ -20,6 +20,7 @@ import service.TblchuyendiFacadeLocal;
 import service.TblloaixeFacadeLocal;
 import service.TblphanquyenFacadeLocal;
 import service.TblphieudatchoFacadeLocal;
+import service.TbltaikhoanFacadeLocal;
 import service.TblthamsoFacadeLocal;
 import service.TbltuyenxeFacadeLocal;
 import service.TblxekhachFacadeLocal;
@@ -55,6 +56,8 @@ public class ManageSessionBean {
     public TblbaocaodoanhthuchuyendiFacadeLocal tblbaocaodoanhthuchuyendiFacade = lookupTblbaocaodoanhthuchuyendiFacadeLocal();
 
     public TblbenxeFacadeLocal tblbenxeFacade = lookupTblbenxeFacadeLocal();
+    
+    public TbltaikhoanFacadeLocal tbltaikhoanFacade = lookupTbltaikhoanFacadeLocal();
     
     public ManageSessionBean(){
     }
@@ -188,5 +191,13 @@ public class ManageSessionBean {
         }
     }
     
-    
+    private TbltaikhoanFacadeLocal lookupTbltaikhoanFacadeLocal() {
+        try {
+            Context c = new InitialContext();
+            return (TbltaikhoanFacadeLocal) c.lookup("java:comp/env/TbltaikhoanFacade");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
 }

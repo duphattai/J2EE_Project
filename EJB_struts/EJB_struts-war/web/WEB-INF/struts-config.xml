@@ -7,6 +7,11 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="LoginForm" type="actionform.quanlytaikhoan.LoginForm"/>
+        <form-bean name="QLTaiKhoanForm" type="actionform.quanlytaikhoan.QLTaiKhoanForm"/>
+        <form-bean name="QLXeForm" type="actionform.quanlyxe.QLXeForm"/>
+        <form-bean name="Loaixe" type="actionform.quanlyloaixe.Loaixe"/>
+        <form-bean name="NewStrutsActionForm" type="actionform.quanlyloaixe.NewStrutsActionForm"/>
         <form-bean name="VeXeForm" type="actionform.quanlyvexe.VeXeForm"/>
         <form-bean name="TraCuuChuyenDiForm" type="actionform.quanlyvexe.TraCuuChuyenDiForm"/>
         <form-bean name="BenXeForm" type="actionform.BenXe.BenXeForm"/>
@@ -24,6 +29,17 @@
         <action path="/vexe" type="action.quanlyvexe.VeXeAction" validate="false" parameter="method" name="TraCuuChuyenDiForm">
             <forward name="vexe" path="/pages/vexe/index.jsp"/>
         </action>
+        <action input="/" name="Loaixe" path="/quanlyloaixe" parameter="method" validate="false" scope="request" type="action.quanlyloaixe.LoaiXeAction">
+             <forward name="success" path="/pages/quanlyloaixe/index.jsp"/>
+             
+        </action>
+        <action input="/" name="QLXeForm" path="/quanlyxe" parameter="method" validate="false" scope="request" type="action.quanlyxe.QuanLyXeAction">
+            <forward name="success" path="/pages/quanlyxe/index.jsp"/>
+        </action>
+        <action input="/" name="QLTaiKhoanForm" path="/taikhoan" parameter="method" validate="false" scope="request" type="action.quanlytaikhoan.TaiKhoanAction">
+            <forward name="success" path="/pages/quanlytaikhoan/index.jsp"/>
+        </action>
+        <action input="/pages/quanlytaikhoan/login.jsp" name="LoginForm" path="/login" scope="session" type="action.quanlytaikhoan.LoginAction" validate="false"/>
         
         <action path="/vexe/lapphieu" name="VeXeForm" parameter="method" type="action.quanlyvexe.VeXeAction" 
                 validate="true" input="/pages/vexe/index.jsp"/>
