@@ -67,7 +67,7 @@
                                         <label class="btn btn-primary" id="update">Update</label>
                                         <label class="btn btn-primary an" id="cancel">Cancel</label>
                                         <button type="submit" class="btn btn-success an" id="luu">Lưu</button>
-                                        <a href="quanlyloaixe.do?method=delete&&maloaixe=${xe.maloaixe}" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="quanlyloaixe.do?method=delete&&maloaixe=${xe.maloaixe}" class="btn btn-danger" id="delete" onclick="return confirm('Bạn có muốn xóa không?')">Delete</a>
                                         <!--<label data-id="${xe.maloaixe}" class="btn btn-danger" id="delete">Delete</label>-->
                                     </td>                                    
                                 </tr>

@@ -114,7 +114,7 @@
                                         <label class="btn btn-primary" id="update">Update</label>
                                         <label class="btn btn-primary an" id="cancel">Cancel</label>
                                         <button type="submit" class="btn btn-success an" id="luu">Lưu</button>
-                                        <a href="taikhoan.do?method=delete&&tentaikhoan=${tk.tentaikhoan}" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="taikhoan.do?method=delete&&tentaikhoan=${tk.tentaikhoan}" class="btn btn-danger" id="delete" onclick="return confirm('Bạn có muốn xóa không?')">Delete</a>
                                     </td>                                    
                                 </tr>
                                 </html:form>
