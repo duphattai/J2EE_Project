@@ -6,8 +6,11 @@
 
 package action.baocaonam;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import managesessionbean.ManageSessionBean;
 
 import org.apache.struts.actions.DispatchAction;
 import org.apache.struts.action.ActionForm;
@@ -23,15 +26,39 @@ public class BaoCaoNamAction extends DispatchAction {
     /* forward name="success" path="" */
     private final static String SUCCESS = "baocaonam";
 
-    /**
-     * This is the Struts action method called on
-     * http://.../actionPath?method=myAction1, where "method" is the value
-     * specified in <action> element : ( <action parameter="method" .../> )
-     */
     public ActionForward index(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        ManageSessionBean msb = new ManageSessionBean();
+        int a = msb.tblphieudatchoFacade.getDoanhThu(6, 2016);
+        request.setAttribute("doanhthu", msb.tblphieudatchoFacade.getDoanhThu(6, 2016));
         
         return mapping.findForward(SUCCESS);
     }
+    
+    public ActionForward getData(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        ManageSessionBean msb = new ManageSessionBean();
+        int nam = Integer.parseInt(request.getParameter("nam"));
+        
+        List<Integer> doanhthu = new ArrayList<>();
+        for(int i = 0; i < 11; i++){
+            
+            doanhthu.add(msb.tblphieudatchoFacade.getDoanhThu(i, nam));
+        }
+        
+        response.setContentType("text/xml;charset=utf-8");
+        response.setHeader("cache-control", "no-cache");
+
+        String xml = "<DOCUMENT>";
+        xml += "<DOANHTHU>" + doanhthu + "</DOANHTHU>";
+        xml += "</DOCUMENT>";
+        
+        response.getWriter().println(xml);
+        response.getWriter().flush();
+        
+        return null;
+    }
+    
 }

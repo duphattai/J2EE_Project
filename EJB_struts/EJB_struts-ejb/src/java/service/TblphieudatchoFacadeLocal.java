@@ -29,4 +29,7 @@ public interface TblphieudatchoFacadeLocal {
     List<Tblphieudatcho> findRange(int[] range);
 
     int count();
+    
+    public int getDoanhThu(int thang, int nam);    
+    
 }
