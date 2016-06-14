@@ -11,28 +11,16 @@
 -->
 
     <global>
-
-        <!-- An example global constant
-        <constant>
-            <constant-name>postalCode</constant-name>
-            <constant-value>^\d{5}\d*$</constant-value>
-        </constant>
-        end example-->
-
     </global>
 
     <formset>
 
         <!-- An example form -->
         <form name="logonForm">
-            <field
-                property="username"
-                depends="required">
+            <field property="username" depends="required">
                     <arg key="logonForm.username"/>
             </field>
-            <field
-                property="password"
-                depends="required,mask">
+            <field property="password" depends="required,mask">
                     <arg key="logonForm.password"/>
                     <var>
                         <var-name>mask</var-name>
@@ -40,35 +28,22 @@
                     </var>
             </field>
         </form>
-
+        
+        <!-- An themvexe form-->
+        <form name="VeXeForm">
+            <field property="hoten" depends="required">
+                    <arg key="VeXeForm.hoten"/>
+            </field>
+            <field property="dienthoai" depends="required,mask">
+                    <arg key="VeXeForm.dienthoai"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9]*$</var-value>
+                    </var>
+            </field>
+            <field property="danhsachghe" depends="required">
+                    <arg key="VeXeForm.danhsachghe"/>
+            </field>
+        </form>
     </formset>
-
-    <!-- An example formset for another locale -->
-    <formset language="fr">
-
-        <constant>
-            <constant-name>postalCode</constant-name>
-            <constant-value>^[0-9a-zA-Z]*$</constant-value>
-        </constant>
-
-        <!-- An example form -->
-        <form name="logonForm">
-            <field
-                property="username"
-                depends="required">
-                    <arg key="logonForm.username"/>
-            </field>
-            <field
-                property="password"
-                depends="required,mask">
-                    <arg key="logonForm.password"/>
-                    <var>
-                        <var-name>mask</var-name>
-                        <var-value>^[0-9a-zA-Z]*$</var-value>
-                    </var>
-            </field>
-        </form>
-
-   </formset>
-
 </form-validation>

@@ -51,6 +51,27 @@ public class TbltuyenxeFacade extends AbstractFacade<Tbltuyenxe> implements Tblt
             return null;
         }
     }
+    public List<Tbltuyenxe> getTuyenXeForBenXeDi(int mabenxe){
+        try{
+            String sql = "SELECT tx FROM Tbltuyenxe tx WHERE tx.mabendi = :mabenxe";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("mabenxe", mabenxe);
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+    public List<Tbltuyenxe> getTuyenXeForBenXeDen(int mabenxe){
+        try{
+            String sql = "SELECT tx FROM Tbltuyenxe tx WHERE tx.mabenden = :mabenxe";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("mabenxe", mabenxe);
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
     
     public Tbltuyenxe getTuyenXeForBenXeDiAndBenXeDen(int mabendi, int mabenden){
         try{

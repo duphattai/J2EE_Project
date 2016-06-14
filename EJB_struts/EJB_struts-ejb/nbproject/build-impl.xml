@@ -793,17 +793,17 @@ exists or setup the property manually. For example like this:
     </target>
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
-        <copyfiles files="${libs.MySQL.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.MySQLDriver.classpath}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
-        <basename file="${libs.MySQL.classpath}" property="manifest.libs.MySQL.classpath"/>
+        <basename file="${libs.MySQLDriver.classpath}" property="manifest.libs.MySQLDriver.classpath"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
             <attribute name="Extension-List" value="jar-1 "/>
-            <attribute name="jar-1-Extension-Name" value="${manifest.libs.MySQL.classpath}"/>
+            <attribute name="jar-1-Extension-Name" value="${manifest.libs.MySQLDriver.classpath}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
-        <copyfiles files="${libs.MySQL.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.MySQLDriver.classpath}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
@@ -1134,7 +1134,7 @@ exists or setup the property manually. For example like this:
         <mkdir dir="${build.test.results.dir}"/>
     </target>
     <target depends="init,compile-test,-pre-test-run" if="have.tests" name="-do-test-run">
-        <ejbjarproject2:test includes="${includes}" testincludes="**/*Test.java"/>
+        <ejbjarproject2:test testincludes="**/*Test.java"/>
     </target>
     <target depends="init,compile-test,-pre-test-run,-do-test-run" if="have.tests" name="-post-test-run">
         <fail if="tests.failed" unless="ignore.failing.tests">Some tests failed; see details above.</fail>

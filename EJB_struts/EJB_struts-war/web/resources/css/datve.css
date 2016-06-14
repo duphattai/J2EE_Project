@@ -1,5 +1,11 @@
+.row{
+    margin: 0px;
+}
 tr.text_middle td{
 	vertical-align: middle !important;
+}
+#lapVeModal #placeSeat{
+    min-width: 416px;
 }
 #lapVeModal .tr_header{
 	color: rgb(255, 255, 255);
@@ -56,8 +62,11 @@ a.link_icon_seat:hover > .text_icon_seat{
 	height: 20px;
 	background-color: white;
 }
-.seat_selected{
+.seat_bookedSeatNotPayment{
 	background-color: #C8C8C8;
+}
+.seat_bookedSeatPayment{
+	background-color: red;
 }
 .seat_selecting{
 	background-color: rgb(186, 223, 65);

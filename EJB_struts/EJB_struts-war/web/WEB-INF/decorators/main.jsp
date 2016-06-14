@@ -34,9 +34,13 @@
     <script   src="<c:url value="/resources/template/plugins/jQuery/jQuery-2.2.0.min.js"/>"></script>
     <!-- Bootstrap 3.3.6 -->
     <script   src="<c:url value="/resources/template/bootstrap/js/bootstrap.min.js"/>"></script>
+
     <!-- AdminLTE App -->
     <script   src="<c:url value="/resources/template/dist/js/app.min.js"/>"></script>
     
+    <!-- Báo cáo -->
+    <script src="<c:url value="/resources/js/highcharts.js"/>" ></script>
+    <script src="<c:url value="/resources/js/export.js"/>" ></script>
     <decorator:head />
     <body class="hold-transition skin-blue sidebar-mini">
         
@@ -247,7 +251,13 @@
                         <!-- Optionally, you can add icons to the links -->
                         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
                         <li>            
-                            <html:link action="vexe.do"><i class="fa fa-link"></i> <span>Quản lý vé xe</span></html:link>
+                            <html:link action="vexe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý vé xe</span></html:link>
+                        </li>
+                         <li>            
+                            <html:link action="quanlychuyendi.do?method=index&mabendi=-1&mabenden=-1"><i class="fa fa-link"></i> <span>Quản lý chuyến đi</span></html:link>
+                        </li>
+                        <li>            
+                            <html:link action="baocaonam.do?method=index"><i class="fa fa-link"></i> <span>Báo cáo năm</span></html:link>
                         </li>
                         <li class="treeview">
                             <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -277,7 +287,7 @@
                 </section>
 
                 <!-- Main content -->
-                <section class="content">
+                <section class="content row">
                     <!-- Your Page Content Here -->
                     <decorator:body />   
                 </section>
