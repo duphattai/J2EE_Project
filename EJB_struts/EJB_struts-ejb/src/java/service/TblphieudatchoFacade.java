@@ -5,10 +5,13 @@
  */
 package service;
 
-import entity.Tblphieudatcho;
+import entity.*;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,22 @@ public class TblphieudatchoFacade extends AbstractFacade<Tblphieudatcho> impleme
         super(Tblphieudatcho.class);
     }
     
+    public List<Tblphieudatcho> traCuuPhieuDatCho(String hoten, Date ngaydi, String dienthoai, int machuyendi){
+       try{
+
+                      
+            String sql = "SELECT DISTINCT pdc"
+                        +" FROM Tblphieudatcho pdc, Tblchitietphieudatcho ctpdc"
+                        +" WHERE pdc.maphieu = ctpdc.maphieu AND ctpdc.machuyendi = :machuyendi " 
+                        +" AND (pdc.hoten LIKE :hoten OR pdc.dienthoai LIKE :dienthoai)";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("machuyendi", machuyendi);
+            query.setParameter("hoten", "%" + hoten);
+            query.setParameter("dienthoai", "%" + dienthoai + "%");
+            
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }

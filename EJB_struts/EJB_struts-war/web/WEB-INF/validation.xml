@@ -45,5 +45,15 @@
                     <arg key="VeXeForm.danhsachghe"/>
             </field>
         </form>
+        
+        <!-- Tuyen xe form-->
+        <form name="TuyenXeForm">
+            <field property="thoigiandi" depends="required, integer">
+                <arg key="TuyenXeForm.thoigiandi"/>
+            </field>
+            <field property="dongia" depends="required, integer">
+                <arg key="TuyenXeForm.dongia"/>
+            </field>
+        </form>
     </formset>
 </form-validation>

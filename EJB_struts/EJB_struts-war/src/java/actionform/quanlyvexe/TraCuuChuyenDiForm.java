@@ -5,9 +5,6 @@
  */
 package actionform.quanlyvexe;
 
-import java.util.Date;
-
-
 /**
  *
  * @author Tai
@@ -17,7 +14,7 @@ public class TraCuuChuyenDiForm extends org.apache.struts.action.ActionForm {
     private int maBenDi;
     private int maBenDen;
     private String khoiHanh;
-
+    
     public int getMaBenDi() {
         return maBenDi;
     }

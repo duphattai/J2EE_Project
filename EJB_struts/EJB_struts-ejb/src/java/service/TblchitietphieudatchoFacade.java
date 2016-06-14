@@ -6,6 +6,7 @@
 package service;
 
 import entity.Tblchitietphieudatcho;
+import entity.Tblxekhach;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -60,5 +61,16 @@ public class TblchitietphieudatchoFacade extends AbstractFacade<Tblchitietphieud
         }catch(Exception ex){
             return false;
         }  
+    }
+    
+    public List<Tblchitietphieudatcho> getCTPhieuDatChoForMaPhieu(int maphieu){
+        try{
+            Query query = getEntityManager().createNamedQuery("Tblchitietphieudatcho.findByMaphieu");
+            query.setParameter("maphieu", maphieu);
+         
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }
     }
 }

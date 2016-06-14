@@ -44,4 +44,15 @@ public class TblxekhachFacade extends AbstractFacade<Tblxekhach> implements Tblx
             return null;
         }
     }
+    
+    public Tblxekhach getXeKhachByTuyenXe(int matuyen){
+        try{
+            Query query = getEntityManager().createNamedQuery("Tblxekhach.findByMatuyen");
+            query.setParameter("matuyen", matuyen);
+         
+            return (Tblxekhach)query.getSingleResult();
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }

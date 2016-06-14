@@ -7,6 +7,9 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="TraCuuVeXeForm" type="actionform.quanlyvexe.TraCuuVeXeForm"/>
+        <form-bean name="BenXeTrungGianForm" type="actionform.quanlytuyenxe.BenXeTrungGianForm"/>
+        <form-bean name="TuyenXeForm" type="actionform.quanlytuyenxe.TuyenXeForm"/>
         <form-bean name="ChuyenDiForm" type="actionform.quanlychuyendi.ChuyenDiForm"/>
         <form-bean name="VeXeForm" type="actionform.quanlyvexe.VeXeForm"/>
         <form-bean name="TraCuuChuyenDiForm" type="actionform.quanlyvexe.TraCuuChuyenDiForm"/>
@@ -22,15 +25,17 @@
             <forward name="success" path="/pages/welcomeStruts.jsp"/>
         </action>
         
+        <!-- Ve xe-->
         <action path="/vexe" type="action.quanlyvexe.VeXeAction" validate="false" scope="request" parameter="method" name="TraCuuChuyenDiForm">
             <forward name="vexe" path="/pages/vexe/index.jsp"/>
         </action>
-        
         <action path="/vexe/lapphieu" name="VeXeForm" parameter="method" type="action.quanlyvexe.VeXeAction" 
                scope="request" validate="true" input="/pages/vexe/index.jsp">
             <forward name="vexe" path="/pages/vexe/index.jsp"/>
         </action>
-        
+        <action input="/" path="/tracuuvexe" type="action.quanlyvexe.VeXeAction" validate="false" scope="request" parameter="method" name="TraCuuVeXeForm">
+            <forward name="vexe" path="/pages/vexe/edit.jsp"/>
+        </action>
         
         <!-- Chuyen di-->
         <action  path="/quanlychuyendi" type="action.quanlychuyendi.ChuyenDiAction" scope="request" name="ChuyenDiForm" parameter="method" validate="false">
@@ -38,6 +43,15 @@
             <forward name="tracuuxekhach" path="/pages/chuyendi/laplichchuyendi.jsp"/>
         </action>
         <!---->
+        <!-- Tuyen xe -->
+        <action path="/Tuyenxe" parameter="method" validate="true" name="TuyenXeForm" type="action.quanlytuyenxe.TuyenXeAction">
+            <forward name="listtuyenxe" path="/pages/quanlytuyenxe/TuyenXe.jsp"/>
+        </action>
+        <action input="/" path="/Tuyenxe/capnhat" parameter="method" validate="false" name="BenXeTrungGianForm" type="action.quanlytuyenxe.TuyenXeAction">
+            <forward name="listtuyenxe" path="/pages/quanlytuyenxe/TuyenXe.jsp"/>
+        </action>
+        <!-- -->
+        
         <action path="/index" forward="/pages/welcomeStruts.jsp"/>
        
     </action-mappings>

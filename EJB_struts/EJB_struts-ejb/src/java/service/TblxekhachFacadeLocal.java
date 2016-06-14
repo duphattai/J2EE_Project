@@ -31,4 +31,6 @@ public interface TblxekhachFacadeLocal {
     int count();
     
     List<Object[]> getXeKhachByTuyenXeList(List<Integer> matuyen);
+    
+    Tblxekhach getXeKhachByTuyenXe(int matuyen);
 }

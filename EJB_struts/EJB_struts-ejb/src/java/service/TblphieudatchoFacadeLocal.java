@@ -6,6 +6,7 @@
 package service;
 
 import entity.Tblphieudatcho;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,4 +30,6 @@ public interface TblphieudatchoFacadeLocal {
     List<Tblphieudatcho> findRange(int[] range);
 
     int count();
+    
+    List<Tblphieudatcho> traCuuPhieuDatCho(String hoten, Date ngaydi, String dienthoai, int machuyendi);
 }

@@ -5,6 +5,11 @@ $(function () {
         format: 'HH:mm DD/MM/YYYY'
     });
     
+    $('.datetimepicker').datetimepicker({
+        defaultDate: new Date(),
+        format: 'HH:mm DD/MM/YYYY'
+    });
+    
     $('#vexe_hoten').attr('placeholder', 'Họ tên');
     $('#vexe_email').attr('placeholder', 'Email');
     $('#vexe_dienthoai').attr('placeholder', 'Số điện thoại');
@@ -154,3 +159,7 @@ function lapPhieuDatCho(form){
 
     return false;
 };
+
+function timKiemVeXe(){
+    
+}

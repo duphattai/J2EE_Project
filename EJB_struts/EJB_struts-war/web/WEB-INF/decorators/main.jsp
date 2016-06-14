@@ -248,15 +248,25 @@
                         <!-- Optionally, you can add icons to the links -->
                         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
                         <li>            
-                            <html:link action="vexe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý vé xe</span></html:link>
-                        </li>
-                         <li>            
                             <html:link action="quanlychuyendi.do?method=index&mabendi=-1&mabenden=-1"><i class="fa fa-link"></i> <span>Quản lý chuyến đi</span></html:link>
                         </li>
                         <li class="treeview">
-                            <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <a href="#"><i class="fa fa-link"></i> <span>Quản lý vé xe</span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a href="#">Link in level 2</a></li>
+                                <li>            
+                                    <html:link action="vexe.do?method=index"><i class="fa fa-link"></i> <span>Lập vé</span></html:link>
+                                </li>
+                                <li>
+                                    <html:link action="tracuuvexe.do?method=traCuuVeXe"><i class="fa fa-link"></i> <span>Tra cứu vé</span></html:link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-link"></i> <span>Quản lý tuyến xe</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li>            
+                                    <html:link action="Tuyenxe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý tuyến xe</span></html:link>
+                                </li>
                                 <li><a href="#">Link in level 2</a></li>
                             </ul>
                         </li>
