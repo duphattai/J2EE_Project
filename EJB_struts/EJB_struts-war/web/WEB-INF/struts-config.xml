@@ -31,15 +31,25 @@
         </action>
         <action input="/" name="Loaixe" path="/quanlyloaixe" parameter="method" validate="false" scope="request" type="action.quanlyloaixe.LoaiXeAction">
              <forward name="success" path="/pages/quanlyloaixe/index.jsp"/>
+             <forward name="update_redirect" path="/pages/quanlyloaixe/update.jsp"/>
+             <forward name="update" path="/quanlyloaixe.do?method=list"/>
              
         </action>
         <action input="/" name="QLXeForm" path="/quanlyxe" parameter="method" validate="false" scope="request" type="action.quanlyxe.QuanLyXeAction">
             <forward name="success" path="/pages/quanlyxe/index.jsp"/>
+            <forward name="update_redirect" path="/pages/quanlyxe/update.jsp"/>
         </action>
         <action input="/" name="QLTaiKhoanForm" path="/taikhoan" parameter="method" validate="false" scope="request" type="action.quanlytaikhoan.TaiKhoanAction">
             <forward name="success" path="/pages/quanlytaikhoan/index.jsp"/>
+        </action>         
+        <action input="/login.jsp" name="QLTaiKhoanForm" path="/login" scope="session" type="action.quanlytaikhoan.LoginAction" validate="false">
+            <forward name="sucess" path="/index.jsp"/>
+            <forward name="fail" path="/login.jsp"/>            
         </action>
-        <action input="/pages/quanlytaikhoan/login.jsp" name="LoginForm" path="/login" scope="session" type="action.quanlytaikhoan.LoginAction" validate="false"/>
+        <action input="/" name="QLTaiKhoanForm" path="/logout" scope="session" type="action.quanlytaikhoan.LogoutAction" validate="false">
+            <forward name="success" path="/login.jsp"/>
+        </action>
+        <action forward="/login.jsp" path="/signout"/>
         
         <action path="/vexe/lapphieu" name="VeXeForm" parameter="method" type="action.quanlyvexe.VeXeAction" 
                 validate="true" input="/pages/vexe/index.jsp"/>

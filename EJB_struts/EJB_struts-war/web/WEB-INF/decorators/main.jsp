@@ -12,12 +12,13 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+
 <head>
     
     <!-- -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Starter</title>
+    <title>Quản Lý Xe Khách</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -36,7 +37,11 @@
     <script   src="<c:url value="/resources/template/bootstrap/js/bootstrap.min.js"/>"></script>
     <!-- AdminLTE App -->
     <script   src="<c:url value="/resources/template/dist/js/app.min.js"/>"></script>
-    
+    <style>
+        .an {
+            display: none;       
+        }       
+    </style>
     <decorator:head />
     <body class="hold-transition skin-blue sidebar-mini">
         
@@ -49,9 +54,9 @@
                 <!-- Logo -->
                 <a href="#" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>A</b>LT</span>
+                    <span class="logo-mini"><b>QLXK</b></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Admin</b>LTE</span>
+                    <span class="logo-lg"><b>Quản Lý Xe Khách</b></span>
                 </a>
 
                 <!-- Header Navbar -->
@@ -64,7 +69,7 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
-                            <li class="dropdown messages-menu">
+                            <li class="dropdown messages-menu" style="display:none">
                               <!-- Menu toggle button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-envelope-o"></i>
@@ -100,7 +105,7 @@
                             <!-- /.messages-menu -->
 
                             <!-- Notifications Menu -->
-                            <li class="dropdown notifications-menu">
+                            <li class="dropdown notifications-menu" style="display:none">
                               <!-- Menu toggle button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
@@ -123,7 +128,7 @@
                                 </ul>
                             </li>
                             <!-- Tasks Menu -->
-                            <li class="dropdown tasks-menu">
+                            <li class="dropdown tasks-menu" style="display:none">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-flag-o"></i>
@@ -165,7 +170,8 @@
                                     <!-- The user image in the navbar-->
                                     <img src="<c:url value="/resources/template/dist/img/user2-160x160.jpg"/>" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <span class="hidden-xs">${sessionScope.QLTaiKhoanForm.tentaikhoan}</span>
+                                    
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
@@ -173,13 +179,15 @@
                                       <img src="<c:url value="/resources/template/dist/img/user2-160x160.jpg"/>" class="img-circle" alt="User Image">
 
                                       <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        ${sessionScope.QLTaiKhoanForm.hoten} - ${sessionScope.QLTaiKhoanForm.quyen}
+                                        <small>${sessionScope.QLTaiKhoanForm.ngaysinh}</small>
+                                        <small>${sessionScope.QLTaiKhoanForm.diachi}</small>
                                       </p>
+                                     
                                     </li>
                                     <!-- Menu Body -->
                                     <li class="user-body">
-                                        <div class="row">
+<!--                                        <div class="row">
                                             <div class="col-xs-4 text-center">
                                                 <a href="#">Followers</a>
                                             </div>
@@ -189,7 +197,7 @@
                                             <div class="col-xs-4 text-center">
                                                 <a href="#">Friends</a>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <!-- /.row -->
                                     </li>
                                     <!-- Menu Footer-->
@@ -198,13 +206,13 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="logout.do" class="btn btn-default btn-flat" id="signout">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Control Sidebar Toggle Button -->
-                            <li>
+                            <li style="display:none">
                                 <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                             </li>
                         </ul>
@@ -223,14 +231,14 @@
                             <img src="<c:url value="/resources/template/dist/img/user2-160x160.jpg"/>" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p>${sessionScope.QLTaiKhoanForm.tentaikhoan}</p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
 
                     <!-- search form (Optional) -->
-                    <form action="#" method="get" class="sidebar-form">
+                    <form action="#" method="get" class="sidebar-form" style="display: none">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Search...">
                             <span class="input-group-btn">
@@ -243,20 +251,18 @@
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
-                        <li class="header">HEADER</li>
-                        <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                        <li>            
+                        <li class="header">MENU</li>
+                        <!-- Optionally, you can add icons to the links -->                
+                        <li id="quanlyvexe" class="an">            
                             <html:link action="vexe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý vé xe</span></html:link>
+                        </li>                       
+                        <li id="quanlyloaixe" class="an">            
+                            <html:link action="quanlyloaixe.do?method=list"><i class="fa fa-link"></i> <span>Quản lý loại xe</span></html:link>
                         </li>
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-link"></i> <span>Quản lý xe</span> <i class="fa fa-angle-left pull-right"></i></a>
-                            <ul class="treeview-menu">
-                                <li><html:link action="quanlyloaixe.do?method=list"><i class="fa fa-link"></i> <span>Quản lý loại xe</span></html:link></li>
-                                <li><html:link action="quanlyxe.do?method=list"><i class="fa fa-link"></i> <span>Quản lý xe</span></html:link></li>
-                            </ul>
+                        <li id="quanlyxe" class="an">            
+                            <html:link action="quanlyxe.do?method=list"><i class="fa fa-link"></i> <span>Quản lý xe</span></html:link>
                         </li>
-                        <li>            
+                        <li id="taikhoan" class="an">            
                             <html:link action="taikhoan.do?method=list"><i class="fa fa-link"></i> <span>Quản lý tài khoản</span></html:link>
                         </li>
                     </ul>
@@ -268,7 +274,7 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
+                <section class="content-header" style="display:none">
                     <h1>
                         Page Header
                         <small>Optional description</small>
@@ -292,10 +298,10 @@
             <footer class="main-footer">
                 <!-- To the right -->
                 <div class="pull-right hidden-xs">
-                    Anything you want
+                    Lớp: SE325.G21 - Nhóm: G05
                 </div>
                 <!-- Default to the left -->
-                <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2016 <a href="http://uit.edu.vn/">Company</a>.</strong> All rights reserved.
             </footer>
 
             <!-- Control Sidebar -->
@@ -376,6 +382,41 @@
         <!-- ./wrapper -->
 
         <!-- REQUIRED JS SCRIPTS -->
+        
+    <script>
+	
+    $(document).ready(function () {
+        var id = ${sessionScope.QLTaiKhoanForm.maquyen};
+        var admin = ["#taikhoan"];
+        var nhanvien = ["#quanlyvexe", "#quanlyloaixe", "#quanlyxe"];
+        var quanly = ["#quanlyvexe", "#quanlyloaixe", "#quanlyxe"];
+        
+        if(id === 1)
+        {
+            open(admin);
+        }
+        else if(id === 2)
+        {
+            open(nhanvien);
+        }
+        else if(id === 3){
+            open(quanly);
+        }
+        
+        function open(array)
+        {
+          var i;
+          var text = "";
+          for (i = 0; i < array.length; i++) {
+              text = array[i];
+              $(text).removeClass("an");
+          }
+        }
+        
+       
+    });
+           	
+</script>
 
     </body>
 </html>

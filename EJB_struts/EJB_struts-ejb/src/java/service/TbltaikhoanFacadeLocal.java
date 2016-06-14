@@ -30,4 +30,5 @@ public interface TbltaikhoanFacadeLocal {
 
     int count();
     
+    Tbltaikhoan checkExistUserAndPass(String user, String pass);
 }

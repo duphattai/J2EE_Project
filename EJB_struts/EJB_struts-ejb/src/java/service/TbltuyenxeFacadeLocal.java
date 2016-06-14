@@ -32,9 +32,8 @@ public interface TbltuyenxeFacadeLocal {
     public List<Tblbenxe> getAllBenXeDi();
     
     public List<Tblbenxe> getAllBenXeDen();
-    
+     
     Tbltuyenxe getTuyenXeForBenXeDiAndBenXeDen(int mabendi, int mabenden);
     
     int count();
-    
 }

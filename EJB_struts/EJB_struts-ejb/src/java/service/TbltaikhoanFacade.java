@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,4 +31,18 @@ public class TbltaikhoanFacade extends AbstractFacade<Tbltaikhoan> implements Tb
         super(Tbltaikhoan.class);
     }
     
+    @Override
+    public Tbltaikhoan checkExistUserAndPass(String user, String pass){
+        try{
+             
+            String sql = "SELECT tk FROM Tbltaikhoan tk WHERE tk.tentaikhoan = :user AND tk.matkhau = :pass";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("user", user);
+            query.setParameter("pass", pass);          
+            return (Tbltaikhoan)query.getSingleResult();
+        }catch(Exception ex){
+            
+            return null;
+        }
+    }
 }

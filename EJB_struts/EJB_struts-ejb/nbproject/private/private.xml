@@ -5,7 +5,9 @@
         <group>
             <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/entity/Tblxekhach.java</file>
             <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TblxekhachFacade.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TbltuyenxeFacadeLocal.java</file>
             <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/entity/Tblloaixe.java</file>
+            <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TblbenxeFacadeLocal.java</file>
             <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/entity/Tblbenxe.java</file>
             <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TblphanquyenFacade.java</file>
             <file>file:/F:/TuanAnh/MonHoc/J2EE/DoAn/Ver01/J2EE_Project/EJB_struts/EJB_struts-ejb/src/java/service/TbltaikhoanFacade.java</file>

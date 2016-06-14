@@ -16,16 +16,16 @@
     <formset>
 
         <!-- An example form -->
-        <form name="logonForm">
+        <form name="TaiKhoanAction">
             <field
-                property="username"
+                property="tentaikhoan"
                 depends="required">
-                    <arg key="logonForm.username"/>
+                    <arg key="TaiKhoanAction.tentaikhoan"/>
             </field>
             <field
-                property="password"
+                property="matkhau"
                 depends="required,mask">
-                    <arg key="logonForm.password"/>
+                    <arg key="TaiKhoanAction.matkhau"/>
                     <var>
                         <var-name>mask</var-name>
                         <var-value>^[0-9a-zA-Z]*$</var-value>
