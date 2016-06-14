@@ -36,4 +36,5 @@ public interface TblchitietphieudatchoFacadeLocal {
     public Boolean checkExistForMaChuyenDiAndViTriGhe(int machuyendi, String vitrighe, Date ngaydi);
     
     List<Tblchitietphieudatcho> getCTPhieuDatChoForMaPhieu(int maphieu);
+    List<Tblchitietphieudatcho> getCTPhieuDatChoForMaChuyenDi(int machuyendi, Date ngaydi);
 }

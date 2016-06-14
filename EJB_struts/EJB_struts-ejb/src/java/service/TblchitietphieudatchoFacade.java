@@ -47,11 +47,26 @@ public class TblchitietphieudatchoFacade extends AbstractFacade<Tblchitietphieud
             return null;
         }  
     }
+    public List<Tblchitietphieudatcho> getCTPhieuDatChoForMaChuyenDi(int machuyendi, Date ngaydi){
+        try{
+            String sql = "SELECT ctpdc "
+                    +" FROM Tblchitietphieudatcho ctpdc, Tblphieudatcho pdc "
+                    +" WHERE ctpdc.machuyendi = :machuyendi AND ctpdc.maphieu = pdc.maphieu" 
+                    +" AND pdc.ngaydi = :ngaydi";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("machuyendi", machuyendi);
+            query.setParameter("ngaydi", ngaydi, TemporalType.TIMESTAMP);
+            
+            return query.getResultList();
+        }catch(Exception ex){
+            return null;
+        }  
+    }
     public Boolean checkExistForMaChuyenDiAndViTriGhe(int machuyendi, String vitrighe, Date ngaydi){
         try{
             String sql = "SELECT ctpdc FROM Tblchitietphieudatcho ctpdc, Tblphieudatcho pdc"
                     +" WHERE ctpdc.maphieu = pdc.maphieu AND pdc.machuyendi = :machuyendi AND pdc.vitrighe = :vitrighe"
-                    +" AND MONTH(pdc.ngaydat) = MONTH(:ngaydi) AND DAY(pdc.ngaydat) = DAY(:ngaydi)";
+                    +" AND MONTH(pdc.ngaydi) = MONTH(:ngaydi) AND DAY(pdc.ngaydi) = DAY(:ngaydi)";
             Query query = getEntityManager().createQuery(sql);
             query.setParameter("machuyendi", machuyendi);
             query.setParameter("vitrighe", vitrighe);

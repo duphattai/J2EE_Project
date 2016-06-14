@@ -34,15 +34,17 @@ public class TblphieudatchoFacade extends AbstractFacade<Tblphieudatcho> impleme
     
     public List<Tblphieudatcho> traCuuPhieuDatCho(String hoten, Date ngaydi, String dienthoai, int machuyendi){
        try{
-
                       
             String sql = "SELECT DISTINCT pdc"
                         +" FROM Tblphieudatcho pdc, Tblchitietphieudatcho ctpdc"
                         +" WHERE pdc.maphieu = ctpdc.maphieu AND ctpdc.machuyendi = :machuyendi " 
-                        +" AND (pdc.hoten LIKE :hoten OR pdc.dienthoai LIKE :dienthoai)";
+                        +" AND (pdc.hoten LIKE :hoten OR pdc.dienthoai LIKE :dienthoai) AND FUNC('MONTH', pdc.ngaydi) = FUNC('MONTH', :ngaydi) "
+                        +" AND FUNC('DATE', pdc.ngaydi) = FUNC('DATE', :ngaydi) AND FUNC('YEAR', pdc.ngaydi) = FUNC('YEAR', :ngaydi)";
+            
             Query query = getEntityManager().createQuery(sql);
             query.setParameter("machuyendi", machuyendi);
             query.setParameter("hoten", "%" + hoten);
+            query.setParameter("ngaydi", ngaydi);
             query.setParameter("dienthoai", "%" + dienthoai + "%");
             
             return query.getResultList();

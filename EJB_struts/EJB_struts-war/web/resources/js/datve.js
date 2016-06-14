@@ -84,7 +84,7 @@ function initSeats(settings) {
 
             var $inputGhe = $('#text_amount_seat');
             var $textTotalPrice = $('#text_total_price_seat');
-            var formatTextSeat = $(this).attr('id') + ", ";
+            var formatTextSeat = $(this).attr('id') + ", "; // ", " rất quan trong
 
             if ($img.hasClass(settings.selectingSeatCss)) {
                 $img.removeClass(settings.selectingSeatCss);
@@ -117,6 +117,7 @@ function initFormLapVe(tuyen, khoihanh, gia, machuyendi){
     $("#vexe_email").val("");
     $("#vexe_hoten").val("");
     $("#vexe_dienthoai").val("");
+    $("div[name='message'").text("");
     
     $('#lapve_tuyendi').text(tuyen);
     $('#lapve_khoihanh').val(khoihanh);
@@ -124,7 +125,7 @@ function initFormLapVe(tuyen, khoihanh, gia, machuyendi){
     $('#lapve_giave').text(gia);
     $('#lapve_machuyendi').val(machuyendi);
 
-    $.get('vexe.do?method=thongtinchuyendi', { idchuyendi: machuyendi}, function (response) {
+    $.get('vexe.do?method=thongtinchuyendi', { idchuyendi: machuyendi, ngaydi: khoihanh}, function (response) {
 
         var strArray1 = $(response).find('BookedPayment').text();
         var strArray2 = $(response).find('BookedNotPayment').text();
@@ -160,6 +161,54 @@ function lapPhieuDatCho(form){
     return false;
 };
 
-function timKiemVeXe(){
+function initFormEditVeXe(tuyen, khoihanh, gia, machuyendi, danhsachghe, hoten, sdt, email, thanhtoan){
     
+    $("#text_amount_seat").text(danhsachghe);
+    $("#vexe_email").val(email);
+    $("#vexe_hoten").val(hoten);
+    $("#vexe_dienthoai").val(sdt);
+    $("div[name='message'").text("");
+   
+    $("input[name='thanhtoan'][value='0']").prop('checked', thanhtoan);
+    
+    
+    $('#lapve_tuyendi').text(tuyen);
+    $('#lapve_khoihanh').val(khoihanh);
+    $('#lapve_giave').attr('name', gia);
+    $('#lapve_giave').text(gia);
+    $('#lapve_machuyendi').val(machuyendi);
+
+    $.get('vexe.do?method=thongtinchuyendi', { idchuyendi: machuyendi, ngaydi: khoihanh}, function (response) {
+
+        var strArray1 = $(response).find('BookedPayment').text();
+        var strArray2 = $(response).find('BookedNotPayment').text();
+        
+        var settings = {
+            typeCar: 0, //
+            map: ['aaaaaaa', //  'a' is seat, '_' is empty
+                '______a',
+                'aaaaaaa',
+                '______a',
+                'aaaaaaa'],
+            seatCss: 'icon_seat',
+            bookedSeatNotPayment: strArray2.replace('[','').replace(']','').split(','),
+            bookedSeatPayment: strArray1.replace('[','').replace(']','').split(','),
+            bookedSeatNotPaymentCss: 'seat_bookedSeatNotPayment',
+            bookedSeatPaymentCss: 'seat_bookedSeatPayment',
+            selectingSeatCss: 'seat_selecting',
+            pathImgSeat: 'resources/images/bed-white.png' // must be png
+        };
+        initSeats(settings);
+        
+        // make booked of maphieu is change to select
+        var vitrighe = danhsachghe.split(', ');
+        for(var i = 0; i < vitrighe.length; i++){
+            var $ghe = $("#lapVeModal a#" + vitrighe[i]).children('img');
+
+            $ghe.removeClass(settings.bookedSeatNotPaymentCss);
+            $ghe.removeClass(settings.bookedSeatPaymentCss);
+            $ghe.addClass(settings.selectingSeatCss);
+        }
+        
+    }, "xml");
 }

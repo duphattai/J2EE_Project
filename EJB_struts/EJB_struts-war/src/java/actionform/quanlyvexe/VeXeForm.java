@@ -22,11 +22,21 @@ public class VeXeForm extends org.apache.struts.validator.ValidatorForm {
     private boolean thanhtoan;
     private int machuyendi;
     private String tuyenxe;
+    private int dongia;
 
     public String getTuyenxe() {
         return tuyenxe;
     }
 
+    public int getDongia() {
+        return dongia;
+    }
+
+    public void setDongia(int dongia) {
+        this.dongia = dongia;
+    }
+
+    
     public void setTuyenxe(String tuyenxe) {
         this.tuyenxe = tuyenxe;
     }

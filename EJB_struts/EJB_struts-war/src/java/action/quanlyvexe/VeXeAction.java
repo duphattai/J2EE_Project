@@ -104,12 +104,14 @@ public class VeXeAction extends DispatchAction {
             throws Exception {
 
         Object id = request.getParameter("idchuyendi");
+        
         int machuyendi = id != null ? Integer.parseInt(id.toString().trim()) : -1;
-
+        Date ngaydi = myDateFormat.parse(request.getParameter("ngaydi"));
+        
         String xml = "";
         ArrayList<String> listBookedPayment = new ArrayList<>();
         ArrayList<String> listBookedNotPayment = new ArrayList<>();
-        for (Tblchitietphieudatcho pdc : msb.tblchitietphieudatchoFacade.getCTPhieuDatChoForMaChuyenDi(machuyendi)) {
+        for (Tblchitietphieudatcho pdc : msb.tblchitietphieudatchoFacade.getCTPhieuDatChoForMaChuyenDi(machuyendi, ngaydi)) {
             if (pdc.getLayve()) {
                 listBookedPayment.add(pdc.getVitrighe());
             } else {
@@ -217,7 +219,7 @@ public class VeXeAction extends DispatchAction {
                 Tblchuyendi chuyendi = null;
                 for (Tblchuyendi cd : msb.tblchuyendiFacade.getChuyenDiByMaXe(xk.getMaxe())) {
                     if (cd.getKhoihanh().getDay() == ngaydi.getDay()
-                            && cd.getKhoihanh().getHours() == ngaydi.getHours()) {
+                            && cd.getKhoihanh().getHours() >= ngaydi.getHours()) {
                         chuyendi = cd;
                         break;
                     }
@@ -236,18 +238,20 @@ public class VeXeAction extends DispatchAction {
                         tuyen = bxdi.getTenbenxe() + " - " + bxden.getTenbenxe();
 
                         VeXeForm vexe = new VeXeForm();
+                        vexe.setDongia(tx.getDongia());
                         vexe.setTuyenxe(tuyen);
                         vexe.setHoten(pdc.getHoten());
                         vexe.setDienthoai(pdc.getDienthoai());
                         vexe.setEmail(pdc.getEmail());
                         vexe.setMaphieu(pdc.getMaphieu());
-
+                        vexe.setMachuyendi(chuyendi.getMachuyendi());
                         vexe.setNgaydi(myDateFormat.format(pdc.getNgaydi()));
 
                         List<Tblchitietphieudatcho> listCTPDC = msb.tblchitietphieudatchoFacade.getCTPhieuDatChoForMaPhieu(pdc.getMaphieu());
                         String vitrighe = "";
                         for (Tblchitietphieudatcho ctpdc : listCTPDC) {
                             vitrighe += ctpdc.getVitrighe() + ", ";
+                            vexe.setThanhtoan(ctpdc.getLayve());
                         }
                         vexe.setDanhsachghe(vitrighe);
 
