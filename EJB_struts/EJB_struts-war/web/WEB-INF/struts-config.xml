@@ -13,7 +13,7 @@
         <form-bean name="ChuyenDiForm" type="actionform.quanlychuyendi.ChuyenDiForm"/>
         <form-bean name="VeXeForm" type="actionform.quanlyvexe.VeXeForm"/>
         <form-bean name="TraCuuChuyenDiForm" type="actionform.quanlyvexe.TraCuuChuyenDiForm"/>
-        <form-bean name="BenXeForm" type="actionform.BenXe.BenXeForm"/>
+        <form-bean name="BenXeForm" type="actionform.quanlybenxe.BenXeForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -21,10 +21,6 @@
     </global-exceptions>
 
     <action-mappings>
-        <action input="/" name="BenXeForm" path="/thembenxe" scope="request" type="action.quanlybenxe.ThemBenXe" validate="false">
-            <forward name="success" path="/pages/welcomeStruts.jsp"/>
-        </action>
-        
         <!-- Ve xe-->
         <action path="/vexe" type="action.quanlyvexe.VeXeAction" validate="false" scope="request" parameter="method" name="TraCuuChuyenDiForm">
             <forward name="vexe" path="/pages/vexe/index.jsp"/>
@@ -36,6 +32,13 @@
         <action input="/" path="/tracuuvexe" type="action.quanlyvexe.VeXeAction" validate="false" scope="request" parameter="method" name="TraCuuVeXeForm">
             <forward name="vexe" path="/pages/vexe/edit.jsp"/>
         </action>
+        <!-- -->
+        
+        <!-- Ben xe-->
+        <action path="/benxe" validate="false" input="/pages/quanlybenxe/benxe.jsp" parameter="method" name="BenXeForm" type="action.quanlybenxe.BenXeAction">
+            <forward name="listbenxe" path="/pages/quanlybenxe/benxe.jsp"/>
+        </action>
+        <!-- -->
         
         <!-- Chuyen di-->
         <action  path="/quanlychuyendi" type="action.quanlychuyendi.ChuyenDiAction" scope="request" name="ChuyenDiForm" parameter="method" validate="false">

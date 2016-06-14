@@ -30,4 +30,6 @@ public interface TblbenxeFacadeLocal {
 
     int count();
     
+    boolean checkBenXeExist(String tenben);
+    
 }

@@ -267,7 +267,11 @@
                                 <li>            
                                     <html:link action="Tuyenxe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý tuyến xe</span></html:link>
                                 </li>
-                                <li><a href="#">Link in level 2</a></li>
+                                <li>
+                                    <li>            
+                                        <html:link action="benxe.do?method=index"><i class="fa fa-link"></i> <span>Quản lý bến xe</span></html:link>
+                                    </li>
+                                </li>
                             </ul>
                         </li>
                     </ul>

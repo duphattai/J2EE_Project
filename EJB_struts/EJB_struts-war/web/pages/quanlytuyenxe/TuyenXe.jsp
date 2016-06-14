@@ -151,11 +151,11 @@
             <div class="form-group">
                 <table  class="table table-striped">
                     <thead>
-                        <tr>
+                        <tr style="color: rgb(255, 255, 255);background-color: rgb(36, 97, 170);text-transform: uppercase;font-size: 14px;font-weight: 700;">
                             <th class="col-3-sm">Tuyến xe đi</th>
                             <th class="col-2-sm">Tuyến xe đến</th>
-                            <th class="col-2-sm">Sữa</th>
-                            <th class="col-2-sm">Xóa</th>
+                            <th class="col-2-sm"></th>
+                            <th class="col-2-sm"></th>
                         </tr>
                     </thead>
                     <tbody>

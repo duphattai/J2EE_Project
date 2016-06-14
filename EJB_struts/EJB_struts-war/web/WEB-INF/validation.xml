@@ -28,6 +28,15 @@
                     </var>
             </field>
         </form>
+        <!-- An benxe form-->
+        <form name="BenXeForm">
+            <field
+                property="tenBenXe"
+                depends="required">
+                    <arg key="BenXeForm.tenBenXe"/>
+            </field>
+        </form>
+        
         
         <!-- An themvexe form-->
         <form name="VeXeForm">

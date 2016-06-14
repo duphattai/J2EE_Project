@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,6 +29,18 @@ public class TblbenxeFacade extends AbstractFacade<Tblbenxe> implements Tblbenxe
 
     public TblbenxeFacade() {
         super(Tblbenxe.class);
+    }
+    
+    public boolean checkBenXeExist(String tenben){
+        try {
+            Query query = getEntityManager().createNamedQuery("Tblbenxe.findByTenbenxe");
+            query.setParameter("tenbenxe", tenben);
+
+            return query.getResultList().size() == 0 ? false : true;
+        } catch (Exception e) {
+            return false;
+        }
+        
     }
     
 }
