@@ -32,7 +32,7 @@
 <script type="text/javascript">
         function initChart(nam, data) {            
             for (i = 0; i < data.length; i++) { 
-                data[i] = parseInt(data[i]);
+                data[i] = parseInt(data[i])*140000;
             }
             var a = $('#container').highcharts({
                 title: {
@@ -44,12 +44,12 @@
                     x: -20
                 },
                 xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                        'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
                 },
                 yAxis: {
                     title: {
-                        text: 'triệu vnđ'
+                        text: 'vnđ'
                     },
                     plotLines: [{
                         value: 0,
@@ -58,7 +58,7 @@
                     }]
                 },
                 tooltip: {
-                    valueSuffix: '$'
+                    valueSuffix: ' vnđ'
                 },
                 legend: {
                     layout: 'vertical',

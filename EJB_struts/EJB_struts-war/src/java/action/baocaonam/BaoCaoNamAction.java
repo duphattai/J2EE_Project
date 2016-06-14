@@ -43,7 +43,7 @@ public class BaoCaoNamAction extends DispatchAction {
         int nam = Integer.parseInt(request.getParameter("nam"));
         
         List<Integer> doanhthu = new ArrayList<>();
-        for(int i = 0; i < 11; i++){
+        for(int i = 0; i < 12; i++){
             
             doanhthu.add(msb.tblphieudatchoFacade.getDoanhThu(i, nam));
         }
