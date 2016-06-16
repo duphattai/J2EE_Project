@@ -9,26 +9,29 @@ package actionform.quanlybenxe;
  *
  * @author Tai
  */
-public class BenXeForm extends org.apache.struts.validator.ValidatorForm {
+public class BenXeForm extends org.apache.struts.action.ActionForm {
     
-    private String tenBenXe;
-    private int maBenXe;
+    private String tenbenxe;
+    private int mabenxe;
 
-    public String getTenBenXe() {
-        return tenBenXe;
+    public String getTenbenxe() {
+        return tenbenxe;
     }
 
-    public void setTenBenXe(String tenBenXe) {
-        this.tenBenXe = tenBenXe;
+    public void setTenbenxe(String tenbenxe) {
+        this.tenbenxe = tenbenxe;
     }
 
-    public int getMaBenXe() {
-        return maBenXe;
+    public int getMabenxe() {
+        return mabenxe;
     }
 
-    public void setMaBenXe(int maBenXe) {
-        this.maBenXe = maBenXe;
+    public void setMabenxe(int mabenxe) {
+        this.mabenxe = mabenxe;
     }
 
-
+    public BenXeForm() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 }

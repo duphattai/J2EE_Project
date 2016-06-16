@@ -288,4 +288,79 @@ public class VeXeAction extends DispatchAction {
         
         return traCuuVeXe(mapping, form, request, response);
     }
+    
+    public ActionForward suaPhieuDatCho(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        String xml = "<DOCUMENT>";
+        VeXeForm myForm = (VeXeForm) form;
+        final String format = ", "; // format phu thuoc vao initSeats() strong datve.js
+
+        xml += "<MESSAGE>";
+        // validate logic
+        Boolean error = false;
+        if (msb.tblchuyendiFacade.find(myForm.getMachuyendi()) == null) {
+            error = true;
+            xml += "Chuyến đi không tồn tại";
+        }
+
+        Date ngaydi = myDateFormat.parse(myForm.getNgaydi());
+        String message = "";
+        for (String item : myForm.getDanhsachghe().split(format)) {
+            if (msb.tblchitietphieudatchoFacade.checkExistForMaChuyenDiAndViTriGhe(myForm.getMachuyendi(), item, ngaydi)) {
+                message += item + ", ";
+                error = true;
+            }
+        }
+        if (!message.isEmpty()) {
+            xml += "Ghế " + message + " không còn trống<br/>";
+        }
+
+        // setup data
+        if (!error) {
+            Tblphieudatcho pdc = msb.tblphieudatchoFacade.find(myForm.getMaphieu());
+
+            try {
+                pdc.setDienthoai(myForm.getDienthoai());
+                pdc.setEmail(myForm.getEmail());
+                pdc.setNgaydat(new Date());
+                pdc.setHoten(myForm.getHoten());
+                pdc.setNgaydi(ngaydi);
+                msb.tblphieudatchoFacade.edit(pdc);
+
+                List<Tblchitietphieudatcho> list = msb.tblchitietphieudatchoFacade.getCTPhieuDatChoForMaPhieu(pdc.getMaphieu());
+                // delete old ctpdc
+                for(Tblchitietphieudatcho ctpdc : list){
+                    msb.tblchitietphieudatchoFacade.remove(ctpdc);
+                }
+                //add new update
+                for (String item : myForm.getDanhsachghe().split(format)) {
+                    Tblchitietphieudatcho ctpdc = new Tblchitietphieudatcho();
+                    ctpdc.setLayve(myForm.isThanhtoan());
+                    ctpdc.setMaphieu(pdc.getMaphieu());
+                    ctpdc.setMachuyendi(myForm.getMachuyendi());
+                    ctpdc.setNgaylay(new Date());
+                    ctpdc.setVitrighe(item);
+
+                    msb.tblchitietphieudatchoFacade.create(ctpdc);
+                }
+
+                xml += "Cập nhật vé thành công";
+            } catch (RuntimeException ex) {
+                xml += "Không thể thêm phiếu đặt chỗ";
+            } catch (Exception ex) {
+                xml += "Không thể cập nhật phiếu đặt chỗ";
+            }
+        }
+
+        xml += "</MESSAGE>";
+        xml += "</DOCUMENT>";
+        response.setContentType("text/xml;charset=utf-8");
+        response.setHeader("cache-control", "no-cache");
+
+        response.getWriter().println(xml);
+        response.getWriter().flush();
+        return null;
+    }
 }

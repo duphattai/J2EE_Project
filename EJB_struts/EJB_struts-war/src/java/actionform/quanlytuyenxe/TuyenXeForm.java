@@ -17,7 +17,7 @@ public class TuyenXeForm extends org.apache.struts.action.ActionForm {
     private int mabenden;
     private String tenbendi;
     private String tenbenden;
-    private int thoigiandi;
+    private int thoigian;
     private int dongia;
     
     public TuyenXeForm(int matuyen, int mabendi, int mabenden, String tenbendi, String tenbenden) {
@@ -28,6 +28,16 @@ public class TuyenXeForm extends org.apache.struts.action.ActionForm {
         this.tenbenden = tenbenden;
     }
 
+    public TuyenXeForm(int matuyen, int mabendi, int mabenden, String tenbendi, String tenbenden, int thoigian, int dongia) {
+        this.matuyen = matuyen;
+        this.mabendi = mabendi;
+        this.mabenden = mabenden;
+        this.tenbendi = tenbendi;
+        this.tenbenden = tenbenden;
+        this.thoigian = thoigian;
+        this.dongia = dongia;
+    }
+    
     public int getDongia() {
         return dongia;
     }
@@ -36,12 +46,12 @@ public class TuyenXeForm extends org.apache.struts.action.ActionForm {
         this.dongia = dongia;
     }
 
-    public int getThoigiandi() {
-        return thoigiandi;
+    public int getThoigian() {
+        return thoigian;
     }
 
-    public void setThoigiandi(int thoigiandi) {
-        this.thoigiandi = thoigiandi;
+    public void setThoigian(int thoigian) {
+        this.thoigian = thoigian;
     }
 
     public int getMatuyen() {

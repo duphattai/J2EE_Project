@@ -233,4 +233,17 @@ public class ChuyenDiAction extends DispatchAction {
         
         return null;
     }
+     
+    public ActionForward delete(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        int machuyendi = Integer.parseInt(request.getParameter("machuyendi"));
+        Tblchuyendi cd = msb.tblchuyendiFacade.find(machuyendi);
+        if(cd != null){
+            msb.tblchuyendiFacade.remove(cd);
+        }
+
+        return mapping.findForward("success");
+    }
 }

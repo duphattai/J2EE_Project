@@ -52,4 +52,22 @@ public class TblphieudatchoFacade extends AbstractFacade<Tblphieudatcho> impleme
             return null;
         }
     }
+    
+    @Override
+    public int getDoanhThu(int thang, int nam) {
+        try{
+            String sql = "SELECT SUM(tx.dongia) " +
+                    " FROM Tblphieudatcho pdc, Tblchitietphieudatcho ctpdc, Tbltuyenxe tx, Tblxekhach xk, Tblchuyendi cd" +
+                    " WHERE (pdc.maphieu = ctpdc.maphieu) AND tx.matuyen = xk.matuyen AND xk.maxe = cd.maxe" +
+                    " AND (ctpdc.layve = 1) AND cd.machuyendi = ctpdc.machuyendi " +
+                    " AND FUNC('MONTH', pdc.ngaydi) = :thang "+
+                    " AND FUNC('YEAR', pdc.ngaydi) = :nam ";
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter("thang", thang);
+            query.setParameter("nam", nam);
+            return Integer.parseInt(query.getResultList().get(0).toString());
+        }catch(Exception ex){
+            return 0;
+        }
+    }
 }

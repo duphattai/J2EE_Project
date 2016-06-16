@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/web/resources/js/datve.js</file>
-            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/web/pages/vexe/edit.jsp</file>
-            <file>file:/E:/Hoc%20Tap/Nam%204-%20HK%20II/J2EE/Project/J2EE_Project/EJB_struts/EJB_struts-war/src/java/actionform/quanlyvexe/VeXeForm.java</file>
+            <file>file:/C:/Users/Tai.Tai-PC/Desktop/J2EE_Project_01/EJB_struts/EJB_struts-war/src/java/action/quanlyvexe/VeXeAction.java</file>
+            <file>file:/C:/Users/Tai.Tai-PC/Desktop/J2EE_Project_01/EJB_struts/EJB_struts-war/src/java/action/quanlychuyendi/ChuyenDiAction.java</file>
+            <file>file:/C:/Users/Tai.Tai-PC/Desktop/J2EE_Project_01/EJB_struts/EJB_struts-war/web/pages/baocaonam/baocaonam.jsp</file>
+            <file>file:/C:/Users/Tai.Tai-PC/Desktop/J2EE_Project_01/EJB_struts/EJB_struts-war/src/java/action/baocaonam/BaoCaoNamAction.java</file>
         </group>
     </open-files>
 </project-private>

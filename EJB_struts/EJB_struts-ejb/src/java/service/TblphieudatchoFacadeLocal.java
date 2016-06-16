@@ -32,4 +32,6 @@ public interface TblphieudatchoFacadeLocal {
     int count();
     
     List<Tblphieudatcho> traCuuPhieuDatCho(String hoten, Date ngaydi, String dienthoai, int machuyendi);
+    
+    int getDoanhThu(int thang, int nam);
 }
